@@ -15,57 +15,47 @@
     .brand img{width:64px;height:64px;border-radius:10px;object-fit:cover}
     h1{margin:0;font-size:28px}
     p.lead{color:var(--muted);margin-top:6px}
-
-    /* Grid of section cards */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
     .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(12,15,30,0.06);cursor:pointer;display:flex;flex-direction:column;gap:10px}
     .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
     .card h3{margin:0;font-size:18px}
     .card p{margin:0;color:var(--muted);font-size:13px}
     .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-    .btn{background:#0b5fff;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px}
-
-    /* Detail page */
+    .btn{background:#0b5fff;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px;cursor:pointer}
     .detail{display:none;padding:12px;background:var(--card);border-radius:12px;margin-top:18px}
     .detail .back{display:inline-block;margin-bottom:12px;color:var(--accent);text-decoration:underline;cursor:pointer}
     .gallery{display:flex;flex-wrap:wrap;gap:12px}
     .gallery img{width:calc(50% - 6px);height:160px;object-fit:cover;border-radius:8px}
     .doclink{display:inline-block;margin-top:12px}
-
     footer{margin-top:36px;padding:22px 0;color:var(--muted);text-align:center}
-
-    /* small screens */
     @media(max-width:520px){.gallery img{width:100%;height:160px}}
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-  <div class="brand">
-    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=60" alt="portrait">
-    <div>
-      <h1>Vamshika Sutar</h1>
-      <div class="lead">
-        AI Research Enthusiast<br>
-        Bachelors in Civil Engineering, IIT Bombay<br>
-        Minor in Computer Science and Engineering<br>
-        Email: <a href="mailto:sutarvamshika@gmail.com">sutarvamshika@gmail.com</a>
+      <div class="brand">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=60" alt="portrait">
+        <div>
+          <h1>Vamshika Sutar</h1>
+          <div class="lead">
+            AI Research Enthusiast<br>
+            Bachelors in Civil Engineering, IIT Bombay<br>
+            Minor in Computer Science and Engineering<br>
+            Email: <a href="mailto:sutarvamshika@gmail.com">sutarvamshika@gmail.com</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </header>
 
   <main class="container">
     <section id="home">
       <h2 style="margin-top:6px">Welcome — quick links</h2>
-      <p class="lead">Click a section to see items, images and download links. Replace placeholder images/docs with your own files later.</p>
-
-      <div class="grid" id="sectionsGrid">
-        <!-- Cards injected by JS -->
-      </div>
+      <p class="lead">Click a section to see items, images and download links.</p>
+      <div class="grid" id="sectionsGrid"></div>
     </section>
 
-    <!-- Detail view (single element view) -->
     <section id="detailArea" style="display:none">
       <div class="detail" id="detailCard">
         <span class="back" id="goBack">← Back to sections</span>
@@ -77,13 +67,11 @@
     </section>
 
     <footer>
-      Built for grad school applications • Keep it concise. Replace images and docs in the repo's root folder.
+      Built for grad school applications • Replace images and docs in the repo's root folder.
     </footer>
   </main>
 
 <script>
-// === DATA: edit this block with your real info ===
-// (Populated automatically from the uploaded CV: see the resume for full details.)
 const SITE_DATA = [
   {
     id: 'research',
@@ -95,41 +83,11 @@ const SITE_DATA = [
       { id: 'forklift-2025', title: 'Vision-based Semi-Automated Forklifts (Bachelor\'s Thesis)', images: ['https://images.unsplash.com/photo-1506784242128-6e0b0676b5b8?w=1000&q=60'], docs: [{label:'Thesis Report', href:'docs/forklift-thesis.pdf'}], desc:'Built perception pipeline for pallet and pallet-hole detection using YOLOv8/YOLOv11; achieved mAP50 0.795.' },
       { id: 'unsw-2023', title: 'Cyclone Rapid Intensification Forecasting (UNSW)', images: ['https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=1000&q=60'], docs: [{label:'Paper (pdf)', href:'docs/cyclone-forecasting.pdf'}], desc:'Ensembled LSTM models with data augmentation; improved macro-F1 to 0.823 (+20% vs baseline).' }
     ]
-  },
-  {
-    id: 'publications',
-    title: 'Publications & Preprints',
-    subtitle: 'Submitted / Preprint manuscripts',
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&q=60',
-    items: [
-      { id:'pub1', title:'Spatiotemporal Deep Learning Models for Rapid Intensification in Cyclones', images:['https://images.unsplash.com/photo-1531497865145-5b5f9e0b1b7b?w=1000&q=60'], docs:[{label:'Manuscript (pdf)', href:'docs/spatiotemporal-cyclone.pdf'}], desc:'Submitted to Int. Journal of Applied Earth Observation & Geoinformation.' },
-      { id:'pub2', title:'Learning-Based Vision Systems for Semi-Autonomous Forklift Operation', images:['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1000&q=60'], docs:[{label:'Preprint (pdf)', href:'docs/vision-forklift.pdf'}], desc:'Preprint describing pallet detection and hole-association modules.' }
-    ]
-  },
-  {
-    id: 'projects',
-    title: 'Technical Projects',
-    subtitle: 'Course & Independent Projects',
-    image: 'https://images.unsplash.com/photo-1541233349642-6e425fe6190e?w=900&q=60',
-    items: [
-      { id:'proj-rl', title:'Reinforcement Learning — Trading Agent', images:['https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&q=60'], docs:[{label:'GitHub Repo', href:'https://github.com/yourusername/rl-trading'}], desc:'DDPG-based trading environment; simulated 28% return in experiments.' },
-      { id:'proj-nlp', title:'Customer Review Classification (NLP)', images:['https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=60'], docs:[{label:'Project Report', href:'docs/review-classification.pdf'}], desc:'RNN/LSTM and CNN models achieving ~92% accuracy on 1000+ reviews.' },
-      { id:'proj-concrete', title:'Concrete Surface Image Analysis', images:['https://images.unsplash.com/photo-1505765051647-2a1f3d7f0c13?w=1000&q=60'], docs:[{label:'Report', href:'docs/concrete-surface.pdf'}], desc:'DCGAN augmentation and U-Net segmentation; achieved Dice 75.3%.' }
-    ]
-  },
-  {
-    id: 'presentations',
-    title: 'Presentations & Posters',
-    subtitle: 'Conferences and Symposia',
-    image: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=900&q=60',
-    items: [
-      { id:'talk1', title:'Evaluating Semantic Segmentation-Based Scene Descriptions', images:['https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1000&q=60'], docs:[{label:'Conference Poster (pdf)', href:'docs/road-safety-poster.pdf'}], desc:'Presented at Road Safety & Sustainability Conference (IRF), Riyadh, 2024.' },
-      { id:'talk2', title:'Intelligent Roadway Analysis — Poster', images:['https://images.unsplash.com/photo-1508896694512-2e2a9c76a9f0?w=1000&q=60'], docs:[{label:'Symposium Poster', href:'docs/uofa-poster.pdf'}], desc:'Poster at University of Alberta International Symposium, Edmonton, 2024.' }
-    ]
   }
 ];
 
-// === UI logic (no frameworks) ===
+let currentSection = null;
+
 const grid = document.getElementById('sectionsGrid');
 const detailArea = document.getElementById('detailArea');
 const homeSection = document.getElementById('home');
@@ -146,35 +104,39 @@ function makeCard(section){
     <img src="${section.image}" alt="${section.title}">
     <h3>${section.title}</h3>
     <p>${section.subtitle}</p>
-    <div class="meta"><span class="muted">${section.items.length} items</span><a class="btn">Open</a></div>
+    <div class="meta">
+      <span class="muted">${section.items.length} items</span>
+      <a class="btn">Open</a>
+    </div>
   `;
-  el.onclick = ()=> openSection(section.id);
+  el.querySelector(".btn").onclick = (e)=>{
+    e.stopPropagation();
+    openSection(section.id);
+  };
   return el;
 }
 
 function openSection(id){
-  const section = SITE_DATA.find(s=>s.id===id);
-  if(!section) return;
+  currentSection = SITE_DATA.find(s=>s.id===id);
+  if(!currentSection) return;
   homeSection.style.display='none';
   detailArea.style.display='block';
-  detailTitle.textContent = section.title;
-  detailSubtitle.textContent = section.subtitle;
+  detailTitle.textContent = currentSection.title;
+  detailSubtitle.textContent = currentSection.subtitle;
   imageGallery.innerHTML='';
   docLinks.innerHTML='';
 
-  // Show thumbnails for each item in this section
-  section.items.forEach(item=>{
+  currentSection.items.forEach(item=>{
     const img = document.createElement('img');
-    img.src = item.images && item.images[0] ? item.images[0] : section.image;
+    img.src = item.images && item.images[0] ? item.images[0] : currentSection.image;
     img.alt = item.title;
     img.title = item.title + '\n' + item.desc;
     img.style.cursor = 'pointer';
-    img.onclick = ()=> openItem(section, item);
+    img.onclick = ()=> openItem(currentSection, item);
     imageGallery.appendChild(img);
   });
 
-  // List items with links
-  section.items.forEach(item=>{
+  currentSection.items.forEach(item=>{
     const d = document.createElement('div');
     d.style.marginTop='10px';
     d.innerHTML = `<strong>${item.title}</strong> — <span style='color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};font-size:13px'>${item.desc}</span>`;
@@ -187,7 +149,6 @@ function openSection(id){
 }
 
 function openItem(section, item){
-  // Replace gallery with item gallery
   imageGallery.innerHTML='';
   item.images.forEach(src=>{
     const img = document.createElement('img');
@@ -206,7 +167,14 @@ function openItem(section, item){
 
 function init(){
   SITE_DATA.forEach(s=> grid.appendChild(makeCard(s)));
-  goBack.onclick = ()=>{ detailArea.style.display='none'; homeSection.style.display='block'; detailTitle.textContent=''; imageGallery.innerHTML=''; docLinks.innerHTML=''; };
+  goBack.onclick = ()=>{
+    if(currentSection){
+      openSection(currentSection.id);
+    } else {
+      detailArea.style.display='none';
+      homeSection.style.display='block';
+    }
+  };
 }
 init();
 </script>
