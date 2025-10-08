@@ -1,182 +1,428 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vamshika — Research Portfolio</title>
-  <meta name="description" content="Research portfolio for grad school applications" />
-  <style>
-    :root{--bg:#f6f7fb;--card:#fff;--muted:#6b7280;--accent:#0f172a}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:var(--bg);color:var(--accent)}
-    header{background:linear-gradient(90deg, #ffffffcc, #eef2ffcc);backdrop-filter:blur(6px);border-bottom:1px solid #e6e9f2}
-    .container{max-width:1000px;margin:0 auto;padding:28px}
-    .brand{display:flex;gap:16px;align-items:center}
-    .brand img{width:64px;height:64px;border-radius:10px;object-fit:cover}
-    h1{margin:0;font-size:28px}
-    p.lead{color:var(--muted);margin-top:6px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
-    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(12,15,30,0.06);cursor:pointer;display:flex;flex-direction:column;gap:10px}
-    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
-    .card h3{margin:0;font-size:18px}
-    .card p{margin:0;color:var(--muted);font-size:13px}
-    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-    .btn{background:#0b5fff;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px;cursor:pointer}
-    .detail{display:none;padding:12px;background:var(--card);border-radius:12px;margin-top:18px}
-    .detail .back{display:inline-block;margin-bottom:12px;color:var(--accent);text-decoration:underline;cursor:pointer}
-    .gallery{display:flex;flex-wrap:wrap;gap:12px}
-    .gallery img{width:calc(50% - 6px);height:160px;object-fit:cover;border-radius:8px}
-    .doclink{display:inline-block;margin-top:12px}
-    footer{margin-top:36px;padding:22px 0;color:var(--muted);text-align:center}
-    @media(max-width:520px){.gallery img{width:100%;height:160px}}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="brand">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=60" alt="portrait">
-        <div>
-          <h1>Vamshika Sutar</h1>
-          <div class="lead">
-            AI Research Enthusiast<br>
-            Bachelors in Civil Engineering, IIT Bombay<br>
-            Minor in Computer Science and Engineering<br>
-            Email: <a href="mailto:sutarvamshika@gmail.com">sutarvamshika@gmail.com</a>
+import React, { useState, useEffect } from "react";
+
+// Single-file React component for an academic portfolio / grad school application
+// Uses Tailwind CSS utility classes. Replace placeholders with your real content.
+
+export default function GradPortfolio() {
+  const [activeResearch, setActiveResearch] = useState(null);
+  const [currentView, setCurrentView] = useState("main"); // "main" or "research-detail"
+
+  // === Fill these arrays with your real content ===
+  const profile = {
+    name: "Your Name",
+    role: "Prospective MSc / PhD Candidate — Machine Learning & Computer Vision",
+    affiliation: "B.Tech (Civil), Minor in Computer Science — IIT Bombay (expected May 2025)",
+    email: "your.email@domain.com",
+    website: "https://your-website.example",
+    shortBio:
+      "I build machine learning models for perception and decision-making in autonomous systems. My research combines 3D point cloud perception, semantic segmentation, and multimodal NLP for scene description.",
+    cvUrl: "/resume.pdf" // put your PDF at public/resume.pdf when hosting
+  };
+
+  const publications = [
+    {
+      title: "Paper title (replace)",
+      authors: "Your Name, Coauthor, Supervisor",
+      venue: "Conference / Journal (year)",
+      pdf: "#",
+      bibtex: "@inproceedings{...}"
+    }
+    // add more
+  ];
+
+  const presentations = [
+    {
+      title: "Talk / Poster title (replace)",
+      venue: "Conference / Symposium (location, year)",
+      slides: "#"
+    }
+  ];
+
+  const research = [
+    {
+      id: "roadway-analysis",
+      title: "Intelligent roadway analysis for autonomous driving",
+      role: "Research Intern — University of Alberta",
+      period: "Summer 2024",
+      bullets: [
+        "Implemented Point Transformer V2 for LiDAR semantic segmentation",
+        "Fused 3D point clouds with RGB images for improved road boundary detection",
+        "Generated scene descriptions using pretrained NLP models"
+      ],
+      detailedDescription: `
+        This research focused on developing advanced perception systems for autonomous vehicles. 
+        I worked on implementing state-of-the-art transformer architectures for processing 3D LiDAR data,
+        achieving significant improvements in semantic segmentation accuracy. The project involved
+        multi-modal fusion techniques combining point clouds with camera imagery, and developing
+        natural language interfaces for scene understanding.
+        
+        Key achievements:
+        • Improved segmentation accuracy by 15% over baseline methods
+        • Developed novel data augmentation techniques for sparse point clouds
+        • Integrated vision-language models for automated scene description
+      `,
+      technologies: ["Python", "PyTorch", "Open3D", "HuggingFace", "Point Transformer V2"],
+      outcomes: ["Conference paper submitted", "Open-source code repository", "Patent pending"]
+    },
+    {
+      id: "another-project",
+      title: "Another research project",
+      role: "Research Assistant — Your University",
+      period: "Spring 2024",
+      bullets: [
+        "Developed novel algorithm for feature extraction",
+        "Achieved state-of-the-art results on benchmark dataset",
+        "Collaborated with industry partners for real-world validation"
+      ],
+      detailedDescription: `
+        Comprehensive description of your second research project goes here.
+        Explain the problem, your approach, methodology, results, and impact.
+        
+        This section should provide enough detail for admissions committees
+        to understand the depth of your research contributions.
+      `,
+      technologies: ["Python", "TensorFlow", "Scikit-learn", "Docker"],
+      outcomes: ["Journal publication", "Conference presentation", "Dataset release"]
+    }
+  ];
+
+  const projects = [
+    {
+      title: "Cyclone rapid intensification prediction",
+      tech: ["Python", "LSTM", "Data Augmentation"],
+      summary: "Ensemble of LSTM models with synthetic track augmentation. +10% accuracy vs baseline.",
+      code: "#"
+    }
+  ];
+
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = (event) => {
+      if (currentView === "research-detail") {
+        setCurrentView("main");
+        setActiveResearch(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [currentView]);
+
+  const openResearchDetail = (researchItem) => {
+    setActiveResearch(researchItem);
+    setCurrentView("research-detail");
+    // Add to browser history
+    window.history.pushState({ researchDetail: true }, '', `#research-${researchItem.id}`);
+  };
+
+  const closeResearchDetail = () => {
+    setCurrentView("main");
+    setActiveResearch(null);
+    // Go back in history
+    window.history.back();
+  };
+
+  // === Small helper components ===
+  const Section = ({ id, title, children }) => (
+    <section id={id} className="py-12">
+      <div className="max-w-4xl mx-auto px-6">
+        <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+        {children}
+      </div>
+    </section>
+  );
+
+  const IconLink = ({ href, children, onClick }) => (
+    <button
+      onClick={onClick}
+      className="inline-block underline text-sm mr-4 text-blue-600 hover:text-blue-800"
+    >
+      {children}
+    </button>
+  );
+
+  // Research Detail Modal Component
+  const ResearchDetailModal = ({ research, onClose }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h2 className="text-2xl font-bold">{research.title}</h2>
+              <p className="text-lg text-slate-600 mt-2">{research.role}</p>
+              <p className="text-slate-500">{research.period}</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="prose max-w-none">
+            <h3 className="text-xl font-semibold mb-4">Project Overview</h3>
+            <div className="whitespace-pre-line text-slate-700 leading-relaxed">
+              {research.detailedDescription}
+            </div>
+
+            <div className="mt-6 grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-2">Technologies Used</h4>
+                <div className="flex flex-wrap gap-2">
+                  {research.technologies.map((tech, index) => (
+                    <span key={index} className="bg-slate-100 px-3 py-1 rounded-full text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-2">Key Outcomes</h4>
+                <ul className="list-disc list-inside text-slate-700">
+                  {research.outcomes.map((outcome, index) => (
+                    <li key={index}>{outcome}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 pt-6 border-t">
+              <h4 className="font-semibold mb-3">Quick Summary</h4>
+              <ul className="list-disc list-inside text-slate-700">
+                {research.bullets.map((bullet, index) => (
+                  <li key={index}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-8 flex justify-end">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  );
 
-  <main class="container">
-    <section id="home">
-      <h2 style="margin-top:6px">Welcome — quick links</h2>
-      <p class="lead">Click a section to see items, images and download links.</p>
-      <div class="grid" id="sectionsGrid"></div>
-    </section>
+  // Smooth scroll for navigation
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      // Update URL without adding to history (to avoid back button issues)
+      window.history.replaceState(null, '', `#${targetId}`);
+    }
+  };
 
-    <section id="detailArea" style="display:none">
-      <div class="detail" id="detailCard">
-        <span class="back" id="goBack">← Back to sections</span>
-        <h3 id="detailTitle">Title</h3>
-        <div id="detailSubtitle" style="color:var(--muted);font-size:14px;margin-top:6px"></div>
-        <div class="gallery" id="imageGallery"></div>
-        <div id="docLinks"></div>
-      </div>
-    </section>
-
-    <footer>
-      Built for grad school applications • Replace images and docs in the repo's root folder.
-    </footer>
-  </main>
-
-<script>
-const SITE_DATA = [
-  {
-    id: 'research',
-    title: 'Research Experience',
-    subtitle: 'Internships & Thesis Projects',
-    image: 'https://images.unsplash.com/photo-1526378724389-3a8f04a15a4e?w=800&q=60',
-    items: [
-      { id: 'uofa-2024', title: 'Intelligent Roadway Perception (University of Alberta)', images: ['https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1000&q=60'], docs: [{label:'Project Summary (pdf)', href:'docs/uofa-roadway-perception.pdf'}], desc:'Processed rural highway LiDAR point clouds; optimized Point Transformer v2 with hybrid loss; achieved 78.84% semantic segmentation accuracy.' },
-      { id: 'forklift-2025', title: 'Vision-based Semi-Automated Forklifts (Bachelor\'s Thesis)', images: ['https://images.unsplash.com/photo-1506784242128-6e0b0676b5b8?w=1000&q=60'], docs: [{label:'Thesis Report', href:'docs/forklift-thesis.pdf'}], desc:'Built perception pipeline for pallet and pallet-hole detection using YOLOv8/YOLOv11; achieved mAP50 0.795.' },
-      { id: 'unsw-2023', title: 'Cyclone Rapid Intensification Forecasting (UNSW)', images: ['https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=1000&q=60'], docs: [{label:'Paper (pdf)', href:'docs/cyclone-forecasting.pdf'}], desc:'Ensembled LSTM models with data augmentation; improved macro-F1 to 0.823 (+20% vs baseline).' }
-    ]
+  if (currentView === "research-detail" && activeResearch) {
+    return <ResearchDetailModal research={activeResearch} onClose={closeResearchDetail} />;
   }
-];
 
-let currentSection = null;
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <header className="border-b bg-white/70 backdrop-blur sticky top-0 z-30">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div>
+            <a 
+              href="#hero" 
+              onClick={(e) => handleNavClick(e, 'hero')}
+              className="text-xl font-bold hover:text-slate-700"
+            >
+              {profile.name}
+            </a>
+            <div className="text-sm text-slate-500">{profile.role}</div>
+          </div>
+          <nav className="text-sm">
+            <a 
+              className="mr-4 hover:text-slate-700" 
+              href="#research"
+              onClick={(e) => handleNavClick(e, 'research')}
+            >
+              Research
+            </a>
+            <a 
+              className="mr-4 hover:text-slate-700" 
+              href="#publications"
+              onClick={(e) => handleNavClick(e, 'publications')}
+            >
+              Publications
+            </a>
+            <a 
+              className="mr-4 hover:text-slate-700" 
+              href="#projects"
+              onClick={(e) => handleNavClick(e, 'projects')}
+            >
+              Projects
+            </a>
+            <a 
+              className="mr-4 hover:text-slate-700" 
+              href="#presentations"
+              onClick={(e) => handleNavClick(e, 'presentations')}
+            >
+              Presentations
+            </a>
+            <a 
+              className="mr-4 hover:text-slate-700" 
+              href="#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
+      </header>
 
-const grid = document.getElementById('sectionsGrid');
-const detailArea = document.getElementById('detailArea');
-const homeSection = document.getElementById('home');
-const detailTitle = document.getElementById('detailTitle');
-const detailSubtitle = document.getElementById('detailSubtitle');
-const imageGallery = document.getElementById('imageGallery');
-const docLinks = document.getElementById('docLinks');
-const goBack = document.getElementById('goBack');
+      <main>
+        <section id="hero" className="py-16">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div className="md:col-span-2">
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">{profile.name}</h1>
+              <p className="mt-4 text-lg text-slate-700">{profile.role}</p>
+              <p className="mt-4 text-slate-600 max-w-2xl">{profile.shortBio}</p>
 
-function makeCard(section){
-  const el = document.createElement('div');
-  el.className = 'card';
-  el.innerHTML = `
-    <img src="${section.image}" alt="${section.title}">
-    <h3>${section.title}</h3>
-    <p>${section.subtitle}</p>
-    <div class="meta">
-      <span class="muted">${section.items.length} items</span>
-      <a class="btn">Open</a>
+              <div className="mt-6 flex items-center gap-4">
+                <a
+                  href={profile.cvUrl}
+                  className="inline-block px-4 py-2 rounded-lg border font-medium hover:bg-slate-50"
+                  download
+                >
+                  Download CV
+                </a>
+                <a 
+                  href={`mailto:${profile.email}`} 
+                  className="inline-block px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
+                >
+                  Email
+                </a>
+                <a 
+                  href={profile.website} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="underline hover:text-slate-700"
+                >
+                  Website
+                </a>
+              </div>
+
+              <div className="mt-6 text-sm text-slate-500">
+                <strong>Affiliation:</strong> {profile.affiliation}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-48 h-48 bg-gradient-to-br from-slate-200 to-white rounded-2xl flex items-center justify-center">
+                {/* Put a photo in public/portrait.jpg and change the <img> src */}
+                <img src="/portrait.jpg" alt="portrait" className="w-44 h-44 rounded-xl object-cover" />
+              </div>
+
+              <div className="text-center text-sm text-slate-600">
+                Quick stats
+                <div className="mt-2 grid grid-cols-3 gap-2">
+                  <div className="text-center">
+                    <div className="font-semibold">{publications.length}</div>
+                    <div className="text-xs">Pubs</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold">{projects.length}+</div>
+                    <div className="text-xs">Projects</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold">{presentations.length}</div>
+                    <div className="text-xs">Talks</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Section id="research" title="Research Experience">
+          <div className="space-y-6">
+            {research.map((r, i) => (
+              <article key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-semibold text-lg">{r.title}</h3>
+                    <div className="text-sm text-slate-500">{r.role} • {r.period}</div>
+                  </div>
+                  <IconLink onClick={() => openResearchDetail(r)}>View Details</IconLink>
+                </div>
+                <ul className="mt-4 list-disc list-inside text-slate-700">
+                  {r.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="publications" title="Publications">
+          <div className="grid md:grid-cols-2 gap-6">
+            {publications.map((p, i) => (
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-sm text-slate-500 mb-1">{p.venue}</div>
+                <h4 className="font-semibold">{p.title}</h4>
+                <div className="text-sm text-slate-600 mt-2">{p.authors}</div>
+                <div className="mt-3 flex items-center gap-3">
+                  {p.pdf && <a href={p.pdf} className="underline text-sm hover:text-blue-800" target="_blank" rel="noreferrer">PDF</a>}
+                  {p.bibtex && <button className="text-sm underline hover:text-blue-800" onClick={() => navigator.clipboard.writeText(p.bibtex)}>Copy BibTeX</button>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="projects" title="Technical Projects">
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((pr, i) => (
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-sm text-slate-500">{pr.tech.join(' • ')}</div>
+                <h4 className="font-semibold mt-1">{pr.title}</h4>
+                <p className="mt-2 text-slate-700">{pr.summary}</p>
+                {pr.code && <div className="mt-3"><a href={pr.code} className="underline text-sm hover:text-blue-800">Code / Repo</a></div>}
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="presentations" title="Conference & Symposium Presentations">
+          <div className="space-y-4">
+            {presentations.map((t, i) => (
+              <div key={i} className="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex justify-between items-center">
+                <div>
+                  <div className="font-medium">{t.title}</div>
+                  <div className="text-sm text-slate-500">{t.venue}</div>
+                </div>
+                {t.slides && <a href={t.slides} className="underline text-sm hover:text-blue-800">Slides</a>}
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="contact" title="Contact">
+          <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <p className="text-slate-700">Email: <a className="underline hover:text-blue-800" href={`mailto:${profile.email}`}>{profile.email}</a></p>
+            <p className="mt-2 text-slate-700">Location: India</p>
+            <div className="mt-4">
+              <a href={profile.cvUrl} download className="inline-block px-4 py-2 rounded-lg border hover:bg-slate-50">Download CV</a>
+            </div>
+          </div>
+        </Section>
+
+        <footer className="py-10 text-center text-sm text-slate-500">
+          Built for grad school applications • Keep this page concise and focused on research impact.
+        </footer>
+      </main>
     </div>
-  `;
-  el.querySelector(".btn").onclick = (e)=>{
-    e.stopPropagation();
-    openSection(section.id);
-  };
-  return el;
+  );
 }
-
-function openSection(id){
-  currentSection = SITE_DATA.find(s=>s.id===id);
-  if(!currentSection) return;
-  homeSection.style.display='none';
-  detailArea.style.display='block';
-  detailTitle.textContent = currentSection.title;
-  detailSubtitle.textContent = currentSection.subtitle;
-  imageGallery.innerHTML='';
-  docLinks.innerHTML='';
-
-  currentSection.items.forEach(item=>{
-    const img = document.createElement('img');
-    img.src = item.images && item.images[0] ? item.images[0] : currentSection.image;
-    img.alt = item.title;
-    img.title = item.title + '\n' + item.desc;
-    img.style.cursor = 'pointer';
-    img.onclick = ()=> openItem(currentSection, item);
-    imageGallery.appendChild(img);
-  });
-
-  currentSection.items.forEach(item=>{
-    const d = document.createElement('div');
-    d.style.marginTop='10px';
-    d.innerHTML = `<strong>${item.title}</strong> — <span style='color:${getComputedStyle(document.documentElement).getPropertyValue('--muted')};font-size:13px'>${item.desc}</span>`;
-    if(item.docs && item.docs.length){
-      const links = item.docs.map(doc=>`<a class='doclink' href='${doc.href}' target='_blank'>${doc.label}</a>`).join(' ');
-      d.innerHTML += '<div>'+links+'</div>';
-    }
-    docLinks.appendChild(d);
-  });
-}
-
-function openItem(section, item){
-  imageGallery.innerHTML='';
-  item.images.forEach(src=>{
-    const img = document.createElement('img');
-    img.src = src;
-    imageGallery.appendChild(img);
-  });
-  detailTitle.textContent = item.title;
-  detailSubtitle.textContent = section.title + ' • ' + item.desc;
-  docLinks.innerHTML='';
-  if(item.docs) item.docs.forEach(doc=>{
-    const a = document.createElement('a');
-    a.href = doc.href; a.target='_blank'; a.textContent = doc.label; a.className='btn'; a.style.marginRight='8px'; a.style.marginTop='12px';
-    docLinks.appendChild(a);
-  });
-}
-
-function init(){
-  SITE_DATA.forEach(s=> grid.appendChild(makeCard(s)));
-  goBack.onclick = ()=>{
-    if(currentSection){
-      openSection(currentSection.id);
-    } else {
-      detailArea.style.display='none';
-      homeSection.style.display='block';
-    }
-  };
-}
-init();
-</script>
-</body>
-</html>
