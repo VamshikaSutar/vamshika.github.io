@@ -27,10 +27,6 @@
 
 <nav>
     <button onclick="showSection('home')">Home</button>
-    <button onclick="showSection('publications')">Publications</button>
-    <button onclick="showSection('conferences')">Conferences</button>
-    <button onclick="showSection('research')">Research Experience</button>
-    <button onclick="showSection('projects')">Technical Projects</button>
 </nav>
 
 <!-- HOME -->
@@ -44,7 +40,7 @@
             <img src="images/conferences.jpg" alt="Conferences">
             <h3>Conferences & Symposiums</h3>
         </div>
-        <div class="card" onclick="showSection('research')">
+        <div class="card" onclick="showSection('researchList')">
             <img src="images/research.jpg" alt="Research Experience">
             <h3>Research Experience</h3>
         </div>
@@ -87,18 +83,43 @@
     </div>
 </div>
 
-<!-- RESEARCH -->
-<div id="research" class="section" style="display:none;">
+<!-- RESEARCH EXPERIENCE LIST -->
+<div id="researchList" class="section" style="display:none;">
     <span class="back-button" onclick="showSection('home')">← Home</span>
     <h2 style="text-align:center;">Research Experience</h2>
     <div class="container">
-        <div class="card">
+        <div class="card" onclick="showSection('research1')">
             <img src="images/research1.jpg" alt="Research 1">
             <h3>Intelligent Roadway Analysis</h3>
         </div>
-        <div class="card">
+        <div class="card" onclick="showSection('research2')">
             <img src="images/research2.jpg" alt="Research 2">
             <h3>Cyclone Prediction Modelling</h3>
+        </div>
+    </div>
+</div>
+
+<!-- RESEARCH DETAIL PAGES -->
+<div id="research1" class="section" style="display:none;">
+    <span class="back-button" onclick="showSection('researchList')">← Back to Research</span>
+    <h2 style="text-align:center;">Intelligent Roadway Analysis</h2>
+    <div class="container">
+        <div class="card">
+            <img src="images/research1.jpg" alt="Research 1">
+            <h3>Description</h3>
+            <p>Implemented and optimized Point Transformer V2 model for semantic segmentation of LiDAR-generated 3D point cloud data in highway environments...</p>
+        </div>
+    </div>
+</div>
+
+<div id="research2" class="section" style="display:none;">
+    <span class="back-button" onclick="showSection('researchList')">← Back to Research</span>
+    <h2 style="text-align:center;">Cyclone Prediction Modelling</h2>
+    <div class="container">
+        <div class="card">
+            <img src="images/research2.jpg" alt="Research 2">
+            <h3>Description</h3>
+            <p>Developed deep learning models for cyclone rapid intensification prediction using LSTM and ensemble techniques...</p>
         </div>
     </div>
 </div>
