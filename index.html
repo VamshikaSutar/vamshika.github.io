@@ -5,27 +5,34 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vamshika Sutar — Grad School Portfolio</title>
 <style>
-    body { font-family: Arial; margin:0; background:#f4f4f4; }
-    header { background:#222; color:#fff; padding:20px; display:flex; align-items:center; }
-    header img { border-radius:50%; width:100px; height:100px; margin-right:20px; }
-    header h1 { margin:0; font-size:28px; }
-    header p { margin:0; font-size:16px; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; margin:0; background:#f9f9f9; }
+    header { background:#1a1a1a; color:#fff; padding:20px; display:flex; align-items:center; justify-content:space-between; }
+    header .profile { display:flex; align-items:center; }
+    header img { border-radius:50%; width:100px; height:100px; margin-right:20px; border:2px solid #fff; }
+    header h1 { margin:0; font-size:26px; }
+    header p { margin:4px 0 0 0; font-size:14px; color:#ccc; }
+    header a { color:#fff; text-decoration:none; background:#0077cc; padding:8px 12px; border-radius:5px; font-size:14px; }
+    header a:hover { background:#005fa3; }
     .container { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; }
-    .card { background:#fff; border-radius:8px; margin:20px; width:250px; box-shadow:0 2px 8px rgba(0,0,0,0.2); text-align:center; cursor:pointer; transition: transform 0.2s; }
-    .card:hover { transform: scale(1.05); }
-    .card img { width:100%; height:180px; object-fit:cover; }
-    .card h3 { padding:10px; }
-    .back-button { display:inline-block; margin:20px; padding:10px 20px; background:#555; color:#fff; border-radius:5px; cursor:pointer; }
+    .card { background:#fff; border-radius:8px; margin:20px; width:250px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.15); }
+    .card img { width:100%; height:180px; object-fit:cover; border-top-left-radius:8px; border-top-right-radius:8px; }
+    .card h3 { padding:12px; font-size:18px; }
+    .back-button { display:inline-block; margin:20px; padding:10px 20px; background:#333; color:#fff; border-radius:5px; cursor:pointer; font-size:14px; }
+    h2 { font-size:24px; color:#222; margin-top:20px; }
 </style>
 </head>
 <body>
 
 <header>
-    <img src="images/profile.jpg" alt="Vamshika Sutar">
-    <div>
-        <h1>Vamshika Sutar — Grad School Portfolio</h1>
-        <p>Welcome! Explore my research, publications, projects, and presentations.</p>
+    <div class="profile">
+        <img src="images/profile_placeholder.jpg" alt="Vamshika Sutar">
+        <div>
+            <h1>Vamshika Sutar</h1>
+            <p>AI Research Enthusiast, Bachelors in Civil Engineering, Minor in Computer Science and Engineering</p>
+        </div>
     </div>
+    <a href="Vamshika_Sutar_CV.pdf" target="_blank">Download CV</a>
 </header>
 
 <!-- HOME -->
@@ -46,6 +53,14 @@
         <div class="card" onclick="showSection('projects')">
             <img src="images/projects.jpg" alt="Technical Projects">
             <h3>Technical Projects</h3>
+        </div>
+        <div class="card" onclick="showSection('positions')">
+            <img src="images/positions.jpg" alt="Position of Responsibility">
+            <h3>Position of Responsibility</h3>
+        </div>
+        <div class="card" onclick="showSection('experience')">
+            <img src="images/professional.jpg" alt="Professional Experience">
+            <h3>Professional Experience</h3>
         </div>
     </div>
 </div>
@@ -114,12 +129,35 @@
     </div>
 </div>
 
+<!-- POSITIONS -->
+<div id="positions" class="section" style="display:none;">
+    <span class="back-button" onclick="showSection('home')">← Home</span>
+    <h2 style="text-align:center;">Position of Responsibility</h2>
+    <div class="container">
+        <div class="card" onclick="showSection('position1')">
+            <img src="images/positions.jpg" alt="Position 1">
+            <h3>Position 1</h3>
+        </div>
+    </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience" class="section" style="display:none;">
+    <span class="back-button" onclick="showSection('home')">← Home</span>
+    <h2 style="text-align:center;">Professional Experience</h2>
+    <div class="container">
+        <div class="card" onclick="showSection('experience1')">
+            <img src="images/professional.jpg" alt="Experience 1">
+            <h3>Experience 1</h3>
+        </div>
+    </div>
+</div>
+
 <script>
 function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
     document.getElementById(id).style.display = 'block';
 }
 </script>
-
 </body>
 </html>
