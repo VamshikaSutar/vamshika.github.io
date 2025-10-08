@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Single-file React component for an academic portfolio / grad school application
 // Uses Tailwind CSS utility classes. Replace placeholders with your real content.
 
 export default function GradPortfolio() {
-  const [activeResearch, setActiveResearch] = useState(null);
-  const [currentView, setCurrentView] = useState("main"); // "main" or "research-detail"
-
   // === Fill these arrays with your real content ===
   const profile = {
     name: "Your Name",
@@ -40,7 +37,6 @@ export default function GradPortfolio() {
 
   const research = [
     {
-      id: "roadway-analysis",
       title: "Intelligent roadway analysis for autonomous driving",
       role: "Research Intern — University of Alberta",
       period: "Summer 2024",
@@ -49,40 +45,7 @@ export default function GradPortfolio() {
         "Fused 3D point clouds with RGB images for improved road boundary detection",
         "Generated scene descriptions using pretrained NLP models"
       ],
-      detailedDescription: `
-        This research focused on developing advanced perception systems for autonomous vehicles. 
-        I worked on implementing state-of-the-art transformer architectures for processing 3D LiDAR data,
-        achieving significant improvements in semantic segmentation accuracy. The project involved
-        multi-modal fusion techniques combining point clouds with camera imagery, and developing
-        natural language interfaces for scene understanding.
-        
-        Key achievements:
-        • Improved segmentation accuracy by 15% over baseline methods
-        • Developed novel data augmentation techniques for sparse point clouds
-        • Integrated vision-language models for automated scene description
-      `,
-      technologies: ["Python", "PyTorch", "Open3D", "HuggingFace", "Point Transformer V2"],
-      outcomes: ["Conference paper submitted", "Open-source code repository", "Patent pending"]
-    },
-    {
-      id: "another-project",
-      title: "Another research project",
-      role: "Research Assistant — Your University",
-      period: "Spring 2024",
-      bullets: [
-        "Developed novel algorithm for feature extraction",
-        "Achieved state-of-the-art results on benchmark dataset",
-        "Collaborated with industry partners for real-world validation"
-      ],
-      detailedDescription: `
-        Comprehensive description of your second research project goes here.
-        Explain the problem, your approach, methodology, results, and impact.
-        
-        This section should provide enough detail for admissions committees
-        to understand the depth of your research contributions.
-      `,
-      technologies: ["Python", "TensorFlow", "Scikit-learn", "Docker"],
-      outcomes: ["Journal publication", "Conference presentation", "Dataset release"]
+      link: "#"
     }
   ];
 
@@ -95,36 +58,6 @@ export default function GradPortfolio() {
     }
   ];
 
-  // Handle browser back button
-  useEffect(() => {
-    const handlePopState = (event) => {
-      if (currentView === "research-detail") {
-        setCurrentView("main");
-        setActiveResearch(null);
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [currentView]);
-
-  const openResearchDetail = (researchItem) => {
-    setActiveResearch(researchItem);
-    setCurrentView("research-detail");
-    // Add to browser history
-    window.history.pushState({ researchDetail: true }, '', `#research-${researchItem.id}`);
-  };
-
-  const closeResearchDetail = () => {
-    setCurrentView("main");
-    setActiveResearch(null);
-    // Go back in history
-    window.history.back();
-  };
-
   // === Small helper components ===
   const Section = ({ id, title, children }) => (
     <section id={id} className="py-12">
@@ -135,150 +68,31 @@ export default function GradPortfolio() {
     </section>
   );
 
-  const IconLink = ({ href, children, onClick }) => (
-    <button
-      onClick={onClick}
-      className="inline-block underline text-sm mr-4 text-blue-600 hover:text-blue-800"
+  const IconLink = ({ href, children }) => (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block underline text-sm mr-4"
     >
       {children}
-    </button>
+    </a>
   );
-
-  // Research Detail Modal Component
-  const ResearchDetailModal = ({ research, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h2 className="text-2xl font-bold">{research.title}</h2>
-              <p className="text-lg text-slate-600 mt-2">{research.role}</p>
-              <p className="text-slate-500">{research.period}</p>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-slate-500 hover:text-slate-700 text-2xl font-bold"
-            >
-              ×
-            </button>
-          </div>
-
-          <div className="prose max-w-none">
-            <h3 className="text-xl font-semibold mb-4">Project Overview</h3>
-            <div className="whitespace-pre-line text-slate-700 leading-relaxed">
-              {research.detailedDescription}
-            </div>
-
-            <div className="mt-6 grid md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold mb-2">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2">
-                  {research.technologies.map((tech, index) => (
-                    <span key={index} className="bg-slate-100 px-3 py-1 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Key Outcomes</h4>
-                <ul className="list-disc list-inside text-slate-700">
-                  {research.outcomes.map((outcome, index) => (
-                    <li key={index}>{outcome}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t">
-              <h4 className="font-semibold mb-3">Quick Summary</h4>
-              <ul className="list-disc list-inside text-slate-700">
-                {research.bullets.map((bullet, index) => (
-                  <li key={index}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 flex justify-end">
-            <button
-              onClick={onClose}
-              className="px-6 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Smooth scroll for navigation
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
-      // Update URL without adding to history (to avoid back button issues)
-      window.history.replaceState(null, '', `#${targetId}`);
-    }
-  };
-
-  if (currentView === "research-detail" && activeResearch) {
-    return <ResearchDetailModal research={activeResearch} onClose={closeResearchDetail} />;
-  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b bg-white/70 backdrop-blur sticky top-0 z-30">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
-            <a 
-              href="#hero" 
-              onClick={(e) => handleNavClick(e, 'hero')}
-              className="text-xl font-bold hover:text-slate-700"
-            >
-              {profile.name}
-            </a>
+            <a href="#hero" className="text-xl font-bold">{profile.name}</a>
             <div className="text-sm text-slate-500">{profile.role}</div>
           </div>
           <nav className="text-sm">
-            <a 
-              className="mr-4 hover:text-slate-700" 
-              href="#research"
-              onClick={(e) => handleNavClick(e, 'research')}
-            >
-              Research
-            </a>
-            <a 
-              className="mr-4 hover:text-slate-700" 
-              href="#publications"
-              onClick={(e) => handleNavClick(e, 'publications')}
-            >
-              Publications
-            </a>
-            <a 
-              className="mr-4 hover:text-slate-700" 
-              href="#projects"
-              onClick={(e) => handleNavClick(e, 'projects')}
-            >
-              Projects
-            </a>
-            <a 
-              className="mr-4 hover:text-slate-700" 
-              href="#presentations"
-              onClick={(e) => handleNavClick(e, 'presentations')}
-            >
-              Presentations
-            </a>
-            <a 
-              className="mr-4 hover:text-slate-700" 
-              href="#contact"
-              onClick={(e) => handleNavClick(e, 'contact')}
-            >
-              Contact
-            </a>
+            <a className="mr-4" href="#research">Research</a>
+            <a className="mr-4" href="#publications">Publications</a>
+            <a className="mr-4" href="#projects">Projects</a>
+            <a className="mr-4" href="#presentations">Presentations</a>
+            <a className="mr-4" href="#contact">Contact</a>
           </nav>
         </div>
       </header>
@@ -294,25 +108,13 @@ export default function GradPortfolio() {
               <div className="mt-6 flex items-center gap-4">
                 <a
                   href={profile.cvUrl}
-                  className="inline-block px-4 py-2 rounded-lg border font-medium hover:bg-slate-50"
+                  className="inline-block px-4 py-2 rounded-lg border font-medium"
                   download
                 >
                   Download CV
                 </a>
-                <a 
-                  href={`mailto:${profile.email}`} 
-                  className="inline-block px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-800"
-                >
-                  Email
-                </a>
-                <a 
-                  href={profile.website} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="underline hover:text-slate-700"
-                >
-                  Website
-                </a>
+                <a href={`mailto:${profile.email}`} className="inline-block px-4 py-2 rounded-lg bg-slate-900 text-white">Email</a>
+                <a href={profile.website} target="_blank" rel="noreferrer" className="underline">Website</a>
               </div>
 
               <div className="mt-6 text-sm text-slate-500">
@@ -330,15 +132,15 @@ export default function GradPortfolio() {
                 Quick stats
                 <div className="mt-2 grid grid-cols-3 gap-2">
                   <div className="text-center">
-                    <div className="font-semibold">{publications.length}</div>
+                    <div className="font-semibold">3</div>
                     <div className="text-xs">Pubs</div>
                   </div>
                   <div className="text-center">
-                    <div className="font-semibold">{projects.length}+</div>
+                    <div className="font-semibold">5+</div>
                     <div className="text-xs">Projects</div>
                   </div>
                   <div className="text-center">
-                    <div className="font-semibold">{presentations.length}</div>
+                    <div className="font-semibold">2</div>
                     <div className="text-xs">Talks</div>
                   </div>
                 </div>
@@ -350,13 +152,13 @@ export default function GradPortfolio() {
         <Section id="research" title="Research Experience">
           <div className="space-y-6">
             {research.map((r, i) => (
-              <article key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <article key={i} className="bg-white rounded-2xl p-6 shadow-sm">
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-semibold text-lg">{r.title}</h3>
                     <div className="text-sm text-slate-500">{r.role} • {r.period}</div>
                   </div>
-                  <IconLink onClick={() => openResearchDetail(r)}>View Details</IconLink>
+                  {r.link && <IconLink href={r.link}>Project page</IconLink>}
                 </div>
                 <ul className="mt-4 list-disc list-inside text-slate-700">
                   {r.bullets.map((b, j) => <li key={j}>{b}</li>)}
@@ -369,13 +171,13 @@ export default function GradPortfolio() {
         <Section id="publications" title="Publications">
           <div className="grid md:grid-cols-2 gap-6">
             {publications.map((p, i) => (
-              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm">
                 <div className="text-sm text-slate-500 mb-1">{p.venue}</div>
                 <h4 className="font-semibold">{p.title}</h4>
                 <div className="text-sm text-slate-600 mt-2">{p.authors}</div>
                 <div className="mt-3 flex items-center gap-3">
-                  {p.pdf && <a href={p.pdf} className="underline text-sm hover:text-blue-800" target="_blank" rel="noreferrer">PDF</a>}
-                  {p.bibtex && <button className="text-sm underline hover:text-blue-800" onClick={() => navigator.clipboard.writeText(p.bibtex)}>Copy BibTeX</button>}
+                  {p.pdf && <a href={p.pdf} className="underline text-sm" target="_blank" rel="noreferrer">PDF</a>}
+                  {p.bibtex && <button className="text-sm underline" onClick={() => navigator.clipboard.writeText(p.bibtex)}>Copy BibTeX</button>}
                 </div>
               </div>
             ))}
@@ -385,11 +187,11 @@ export default function GradPortfolio() {
         <Section id="projects" title="Technical Projects">
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((pr, i) => (
-              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm">
                 <div className="text-sm text-slate-500">{pr.tech.join(' • ')}</div>
                 <h4 className="font-semibold mt-1">{pr.title}</h4>
                 <p className="mt-2 text-slate-700">{pr.summary}</p>
-                {pr.code && <div className="mt-3"><a href={pr.code} className="underline text-sm hover:text-blue-800">Code / Repo</a></div>}
+                {pr.code && <div className="mt-3"><a href={pr.code} className="underline text-sm">Code / Repo</a></div>}
               </div>
             ))}
           </div>
@@ -398,12 +200,12 @@ export default function GradPortfolio() {
         <Section id="presentations" title="Conference & Symposium Presentations">
           <div className="space-y-4">
             {presentations.map((t, i) => (
-              <div key={i} className="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex justify-between items-center">
+              <div key={i} className="bg-white p-4 rounded-2xl shadow-sm flex justify-between items-center">
                 <div>
                   <div className="font-medium">{t.title}</div>
                   <div className="text-sm text-slate-500">{t.venue}</div>
                 </div>
-                {t.slides && <a href={t.slides} className="underline text-sm hover:text-blue-800">Slides</a>}
+                {t.slides && <a href={t.slides} className="underline text-sm">Slides</a>}
               </div>
             ))}
           </div>
@@ -411,10 +213,10 @@ export default function GradPortfolio() {
 
         <Section id="contact" title="Contact">
           <div className="bg-white rounded-2xl p-6 shadow-sm">
-            <p className="text-slate-700">Email: <a className="underline hover:text-blue-800" href={`mailto:${profile.email}`}>{profile.email}</a></p>
+            <p className="text-slate-700">Email: <a className="underline" href={`mailto:${profile.email}`}>{profile.email}</a></p>
             <p className="mt-2 text-slate-700">Location: India</p>
             <div className="mt-4">
-              <a href={profile.cvUrl} download className="inline-block px-4 py-2 rounded-lg border hover:bg-slate-50">Download CV</a>
+              <a href={profile.cvUrl} download className="inline-block px-4 py-2 rounded-lg border">Download CV</a>
             </div>
           </div>
         </Section>
