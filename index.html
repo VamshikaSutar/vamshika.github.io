@@ -5,134 +5,41 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Vamshika Sutar — Grad School Portfolio</title>
 <style>
-  :root {
-    --bg: #f9f9f9;
-    --card-bg: #fff;
-    --muted: #6b7280;
-    --accent: #0077cc;
-    --header-bg: #111827;
+  :root{
+    --bg:#f9f9f9; --card:#fff; --muted:#6b7280; --accent:#0077cc; --dark:#111827;
   }
-  html,body{height:100%;margin:0}
-  body {
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    margin: 0;
-    background: var(--bg);
-    color: #111827;
-  }
-
-  header {
-    background: var(--header-bg);
-    color: #fff;
-    padding: 20px;
-    display:flex;
-    gap:20px;
-    align-items:center;
-    justify-content:space-between;
-  }
-  header .profile { display:flex; align-items:center; gap:16px; }
-  header img {
-    border-radius:50%;
-    width:84px;
-    height:84px;
-    object-fit:cover;
-    border:2px solid rgba(255,255,255,0.12);
-    background: #e5e7eb;
-  }
-  header h1 { margin:0; font-size:20px; line-height:1; }
-  header p { margin:4px 0 0 0; font-size:13px; color: #d1d5db; line-height:1.2; }
-  header a.cv {
-    color:#fff;
-    text-decoration:none;
-    background: var(--accent);
-    padding:8px 12px;
-    border-radius:6px;
-    font-size:14px;
-  }
-  header a.cv:hover{ background:#005fa3; }
-
-  .page {
-    padding: 28px 20px;
-    max-width:1100px;
-    margin:0 auto;
-  }
-
-  .container {
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-    padding: 8px 0 24px 0;
-  }
-
-  .card {
-    background: var(--card-bg);
-    border-radius:10px;
-    margin:0;
-    width:260px;
-    box-shadow:0 6px 18px rgba(15,23,42,0.06);
-    text-align:center;
-    cursor:pointer;
-    transition: transform .16s ease, box-shadow .16s ease;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-  }
-  .card:focus, .card:hover { transform:translateY(-6px); box-shadow:0 12px 26px rgba(15,23,42,0.09); outline:none; }
-  .card img { width:100%; height:160px; object-fit:cover; display:block; }
-  .card h3 { padding:14px; font-size:16px; margin:0; color:#0f172a; line-height:1.25; }
-
-  .paper-link {
-    display:inline-block;
-    margin:10px auto 18px auto;
-    padding:6px 10px;
-    border-radius:6px;
-    background:#0f172a;
-    color:#fff;
-    text-decoration:none;
-    font-size:13px;
-  }
-
-  .section { display:none; }
-  .section.active { display:block; }
-
-  .back-button {
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:18px;
-    padding:8px 12px;
-    background:#111827;
-    color:#fff;
-    border-radius:8px;
-    cursor:pointer;
-    text-decoration:none;
-    font-size:14px;
-  }
-  .back-button:hover { opacity:0.95; }
-
-  h2 { font-size:22px; color:#0f172a; margin:8px 0 18px 0; text-align:center; }
-  .meta { font-size:14px; color:var(--muted); text-align:center; margin-bottom:18px; }
-
-  /* detail area */
-  .detail-box {
-    max-width:920px;
-    margin:0 auto;
-    background:#fff;
-    border-radius:10px;
-    padding:18px;
-    box-shadow:0 8px 22px rgba(2,6,23,0.06);
-  }
-  .detail-box h3 { margin:0 0 8px 0; }
-  .detail-box .muted { color:var(--muted); margin-bottom:12px; }
-  .detail-box ul { margin-top:8px; padding-left:20px; }
-
+  html,body{height:100%;margin:0;font-family:"Segoe UI", Tahoma, sans-serif;background:var(--bg);color:#0f172a}
+  header{background:var(--dark);color:#fff;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .profile{display:flex;gap:12px;align-items:center}
+  header img{width:84px;height:84px;border-radius:50%;object-fit:cover;background:#e5e7eb}
+  header h1{margin:0;font-size:20px}
+  header p{margin:2px 0 0 0;color:#d1d5db;font-size:13px}
+  header a.cv{background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
+  .page{max-width:1100px;margin:0 auto;padding:26px 18px}
+  .container{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+  .card{width:260px;background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;transition:transform .14s, box-shadow .14s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(2,6,23,0.08)}
+  .card img{width:100%;height:150px;object-fit:cover;display:block}
+  .card h3{padding:12px;margin:0;font-size:15px;line-height:1.2}
+  .paper-link{display:inline-block;margin:8px auto 16px auto;padding:6px 10px;border-radius:6px;background:#0f172a;color:#fff;text-decoration:none;font-size:13px}
+  .section{display:none}
+  .section.active{display:block}
+  .back-button{display:inline-flex;align-items:center;padding:8px 12px;background:var(--dark);color:#fff;border-radius:8px;text-decoration:none;cursor:pointer;margin-bottom:12px}
+  h2{text-align:center;margin:6px 0 14px 0;font-size:22px}
+  .meta{text-align:center;color:var(--muted);margin-bottom:12px}
+  .detail-box{max-width:780px;margin:0 auto;background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 28px rgba(2,6,23,0.06)}
+  /* small popup modal */
+  .popup-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.36);display:none;align-items:center;justify-content:center;z-index:1200}
+  .popup{width:min(520px,92%);background:#fff;border-radius:10px;padding:14px;box-shadow:0 18px 40px rgba(2,6,23,0.35);font-size:14px;line-height:1.4}
+  .popup h4{margin:0 0 8px 0;font-size:16px}
+  .popup .muted{color:var(--muted);font-size:13px;margin-bottom:8px}
+  .popup ul{padding-left:18px;margin:8px 0 8px 0}
+  .popup .popup-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+  .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:14px}
+  .btn.primary{background:var(--accent);color:#fff}
+  .btn.ghost{background:#eef2ff;color:#0f172a}
   /* responsive */
-  @media (max-width:640px){
-    header { flex-direction:column; align-items:flex-start; gap:12px; }
-    .container { gap:12px; }
-    .card { width:100%; max-width:420px; }
-  }
+  @media (max-width:640px){ .card{width:100%;max-width:420px} header{flex-direction:column;align-items:flex-start} .popup{width:96%} }
 </style>
 </head>
 <body>
@@ -142,15 +49,8 @@
     <img src="images/profile_placeholder.jpg" alt="Vamshika Sutar">
     <div>
       <h1>Vamshika Sutar</h1>
-      <p>
-        AI Research Enthusiast<br>
-        Bachelors in Civil Engineering — Minor in Computer Science & Engg.
-      </p>
-      <p style="margin-top:6px; font-size:13px; color:#d1d5db;">
-        <a href="mailto:sutarvamshika@gmail.com" style="color:#d1d5db; text-decoration:none;">
-          sutarvamshika@gmail.com
-        </a>
-      </p>
+      <p>AI Research Enthusiast<br> Bachelors in Civil Engineering — Minor in Computer Science & Engg.</p>
+      <p style="margin-top:6px;font-size:13px;color:#d1d5db"><a href="mailto:sutarvamshika@gmail.com" style="color:#d1d5db;text-decoration:none">sutarvamshika@gmail.com</a></p>
     </div>
   </div>
   <a class="cv" href="Vamshika_Sutar_CV.pdf" target="_blank" rel="noopener">Download CV</a>
@@ -158,224 +58,110 @@
 
 <script>
 /*
-  DATA object: edit this block directly to add the points and paper links.
-  - For research/projects/positions: fill `points` (array of strings) and optional `detailLink`.
-  - For publications/conferences: fill `paper` with the URL string and optional `points` to show summary bullets.
-  Example:
-    DATA.research.research1.points = [
-      "Implemented Point Transformer V2 for LiDAR segmentation.",
-      "Optimized inference to 30 fps on edge GPU."
-    ];
-    DATA.publications.publication1.paper = "https://doi.org/xxx";
+  EDIT HERE: DATA object contains the read-only content for the site.
+  - Only Research, Projects and Positions use the small popup showing `points`.
+    Edit the points arrays below to add bullets (strings).
+  - Publications and Conferences have `paper` fields - fill them with the manuscript URL (direct link).
 */
 const DATA = {
   research: {
     research1: {
       title: "Vision-based Learning Systems for Semi-Automated Forklifts",
       points: [
-        // <-- Put your bullet points here for research1 (each string is one bullet)
-        // Example:
-        // "Developed dataset pipeline for warehouse object detection.",
-        // "Implemented segmentation + detection ensemble and optimized latency."
-      ],
-      // optional: link to a longer detail page, repo, or paper
-      detailLink: "" // e.g. "https://drive.google.com/..."
+        // Put bullets here, example:
+        // "Built dataset and trained detection/segmentation models for warehouse environments.",
+        // "Reduced inference latency by model quantization and pruning."
+      ]
     },
     research2: {
       title: "Intelligent Roadway Perception for Autonomous Driving Systems",
       points: [
-        // fill points here
-      ],
-      detailLink: ""
+        // fill points
+      ]
     },
     research3: {
       title: "Spatiotemporal deep learning for forecasting rapidly intensifying cyclones",
-      points: [],
-      detailLink: ""
+      points: []
     },
-    research4: {
-      title: "Delhi Air Quality Prediction using Recursive Forecasting",
-      points: [],
-      detailLink: ""
-    },
-    research5: {
-      title: "Speech Signal Analysis for Parkinson’s Disease Detection",
-      points: [],
-      detailLink: ""
-    },
-    research6: {
-      title: "Oral Potential Malignant Detection",
-      points: [],
-      detailLink: ""
-    },
-    research7: {
-      title: "Concrete Surface Image Analysis",
-      points: [],
-      detailLink: ""
-    }
+    research4: { title: "Delhi Air Quality Prediction using Recursive Forecasting", points: [] },
+    research5: { title: "Speech Signal Analysis for Parkinson’s Disease Detection", points: [] },
+    research6: { title: "Oral Potential Malignant Detection", points: [] },
+    research7: { title: "Concrete Surface Image Analysis", points: [] }
   },
 
   projects: {
-    project1: {
-      title: "AI for Customer Review Classification",
-      points: [
-        // fill project1 points
-      ],
-      detailLink: ""
-    },
-    project2: {
-      title: "Optimizing Stock Trading with Reinforcement Learning",
-      points: [],
-      detailLink: ""
-    },
-    project3: {
-      title: "AI-based Recommendation System",
-      points: [],
-      detailLink: ""
-    }
+    project1: { title: "AI for Customer Review Classification", points: [] },
+    project2: { title: "Optimizing Stock Trading with Reinforcement Learning", points: [] },
+    project3: { title: "AI-based Recommendation System", points: [] }
   },
 
   positions: {
-    position1: {
-      title: "Teaching Assistant - Computer Programming and Utilization (CS 101)",
-      points: [
-        // e.g. "Held weekly office hours and graded assignments for 80 students."
-      ],
-      detailLink: ""
-    }
+    position1: { title: "Teaching Assistant - Computer Programming and Utilization (CS 101)", points: [] }
   },
 
   publications: {
-    publication1: {
-      title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones",
-      paper: "#", // <-- replace '#' with your paper URL (e.g. DOI or Google Drive link)
-      points: [
-        // optional short bullets shown on publication detail page
-      ]
-    },
-    publication2: {
-      title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation",
-      paper: "#",
-      points: []
-    },
-    publication3: {
-      title: "Delhi air quality prediction using LSTM deep learning models",
-      paper: "#",
-      points: []
-    },
-    publication4: {
-      title: "Parkinson’s Disease Detection Using ComParE Features",
-      paper: "#",
-      points: []
-    }
+    publication1: { title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones", paper: "#", points: [] },
+    publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation", paper: "#", points: [] },
+    publication3: { title: "Delhi air quality prediction using LSTM deep learning models", paper: "#", points: [] },
+    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "#", points: [] }
   },
 
   conferences: {
-    conference1: {
-      title: "Conference Title 1",
-      paper: "#", // link to slides / proceedings
-      points: []
-    },
-    conference2: {
-      title: "Conference Title 2",
-      paper: "#",
-      points: []
-    }
+    conference1: { title: "Conference Title 1", paper: "#", points: [] },
+    conference2: { title: "Conference Title 2", paper: "#", points: [] }
   }
 };
 </script>
 
 <!-- HOME -->
 <div id="home" class="section active page">
-  <div style="text-align:center; margin-bottom:8px;">
-    <h2 style="margin:0 0 6px 0;">Welcome — Portfolio</h2>
-    <p class="meta">Click a card to view details (points are read-only — edit them in the DATA object in the source code).</p>
+  <div style="text-align:center;margin-bottom:8px">
+    <h2 style="margin:0 0 6px 0">Welcome — Portfolio</h2>
+    <p class="meta">Click a card to view details. For Research/Projects/Positions a small popup will appear showing points (read-only).</p>
   </div>
-
-  <div class="container" role="list" id="home-cards">
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('publications')" onkeypress="if(event.key==='Enter') showSection('publications')">
-      <img src="images/publications.jpg" alt="">
-      <h3>Publications</h3>
-    </div>
-
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('conferences')" onkeypress="if(event.key==='Enter') showSection('conferences')">
-      <img src="images/conferences.jpg" alt="">
-      <h3>Conferences & Symposiums</h3>
-    </div>
-
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('researchList')" onkeypress="if(event.key==='Enter') showSection('researchList')">
-      <img src="images/research.jpg" alt="">
-      <h3>Research Experience</h3>
-    </div>
-
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('projects')" onkeypress="if(event.key==='Enter') showSection('projects')">
-      <img src="images/projects.jpg" alt="">
-      <h3>Technical Projects</h3>
-    </div>
-
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('positions')" onkeypress="if(event.key==='Enter') showSection('positions')">
-      <img src="images/positions.jpg" alt="">
-      <h3>Position of Responsibility</h3>
-    </div>
-
-    <div class="card" role="listitem" tabindex="0" onclick="showSection('experience')" onkeypress="if(event.key==='Enter') showSection('experience')">
-      <img src="images/professional.jpg" alt="">
-      <h3>Professional Experience</h3>
-    </div>
+  <div class="container" id="home-cards">
+    <div class="card" tabindex="0" onclick="showSection('publications')"><img src="images/publications.jpg" alt=""><h3>Publications</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('conferences')"><img src="images/conferences.jpg" alt=""><h3>Conferences & Symposiums</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="images/research.jpg" alt=""><h3>Research Experience</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="images/projects.jpg" alt=""><h3>Technical Projects</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="images/positions.jpg" alt=""><h3>Position of Responsibility</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('experience')"><img src="images/professional.jpg" alt=""><h3>Professional Experience</h3></div>
   </div>
 </div>
 
 <!-- PUBLICATIONS -->
 <div id="publications" class="section page">
-  <a class="back-button" onclick="showSection('home')" role="button">← Home</a>
+  <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Publications</h2>
-  <div class="container" id="publications-container">
-    <!-- publication cards will be rendered by JS from DATA.publications -->
-  </div>
+  <div class="container" id="publications-container"></div>
 </div>
 
 <!-- CONFERENCES -->
 <div id="conferences" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Conferences & Symposiums</h2>
-  <div class="container" id="conferences-container">
-    <!-- conference cards rendered by JS -->
-  </div>
+  <div class="container" id="conferences-container"></div>
 </div>
 
-<!-- RESEARCH EXPERIENCE LIST -->
+<!-- RESEARCH LIST -->
 <div id="researchList" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Research Experience</h2>
-  <div class="container" id="research-container">
-    <!-- research cards rendered by JS -->
-  </div>
-</div>
-
-<!-- RESEARCH DETAIL (single reusable detail area) -->
-<div id="detail" class="section page" aria-live="polite">
-  <a class="back-button" onclick="showSection('researchList')">← Back</a>
-  <div id="detail-content" class="detail-box">
-    <!-- content rendered by JS -->
-  </div>
+  <div class="container" id="research-container"></div>
 </div>
 
 <!-- PROJECTS -->
 <div id="projects" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Technical Projects</h2>
-  <div class="container" id="projects-container">
-    <!-- project cards rendered by JS -->
-  </div>
+  <div class="container" id="projects-container"></div>
 </div>
 
 <!-- POSITIONS -->
 <div id="positions" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Position of Responsibility</h2>
-  <div class="container" id="positions-container">
-    <!-- position cards rendered by JS -->
-  </div>
+  <div class="container" id="positions-container"></div>
 </div>
 
 <!-- EXPERIENCE -->
@@ -383,235 +169,140 @@ const DATA = {
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Professional Experience</h2>
   <div class="container">
-    <div class="card" tabindex="0">
-      <img src="images/professional.jpg" alt="">
-      <h3>IQVIA (India) Pvt. Ltd.</h3>
+    <div class="card" tabindex="0"><img src="images/professional.jpg" alt=""><h3>IQVIA (India) Pvt. Ltd.</h3></div>
+  </div>
+</div>
+
+<!-- Small popup (read-only) -->
+<div id="popupBackdrop" class="popup-backdrop" aria-hidden="true">
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <h4 id="popupTitle">Title</h4>
+    <div class="muted" id="popupType">Type</div>
+    <div id="popupLinkArea" style="margin-bottom:8px"></div>
+    <strong style="font-size:14px">Key points</strong>
+    <ul id="popupList" style="margin-top:6px"></ul>
+    <div class="popup-actions">
+      <button class="btn ghost" onclick="closePopup()">Close</button>
     </div>
   </div>
 </div>
 
 <script>
-/* --------------------------
-   Utility rendering functions
-   -------------------------- */
-function escapeHtml(unsafe) {
-  return String(unsafe)
-    .replaceAll('&', "&amp;")
-    .replaceAll('<', "&lt;")
-    .replaceAll('>', "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+/* ---------- small helpers ---------- */
+function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+function listHtml(arr){ if(!arr||!arr.length) return '<li style="color:var(--muted)">No points provided. Edit DATA in source to add bullets.</li>'; return arr.map(x=>' <li>'+escapeHtml(x)+'</li>').join(''); }
 
-function listFromArray(arr) {
-  if (!arr || !arr.length) return '<li style="color:var(--muted)">No points provided yet. Edit the DATA object in source to add points.</li>';
-  return arr.map(item => '<li>' + escapeHtml(item) + '</li>').join('');
-}
-
-/* --------------------------
-   Render cards from DATA
-   -------------------------- */
-function renderPublications() {
-  const container = document.getElementById('publications-container');
-  container.innerHTML = '';
-  Object.keys(DATA.publications).forEach(key => {
-    const pub = DATA.publications[key];
-    const paperUrl = pub.paper && pub.paper !== '#' ? pub.paper : null;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <img src="images/publications.jpg" alt="">
-      <h3>${escapeHtml(pub.title)}</h3>
-      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No paper link provided. Edit the DATA object in source to add a URL.')">Paper</a>`}
-    `;
-    card.addEventListener('click', () => showDetail('publication', key));
-    container.appendChild(card);
+/* ---------- render functions ---------- */
+function renderPublications(){
+  const cont = document.getElementById('publications-container'); cont.innerHTML='';
+  Object.keys(DATA.publications).forEach(k=>{
+    const p = DATA.publications[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    const paperUrl = p.paper && p.paper !== '#' ? p.paper : '';
+    card.innerHTML = `<img src="images/publications.jpg" alt=""><h3>${escapeHtml(p.title)}</h3>
+      <a class="paper-link" href="${escapeHtml(paperUrl || '#')}" ${paperUrl ? 'target="_blank" rel="noopener"' : ''}>Paper</a>`;
+    // clicking the card: if paper exists open it, else show a small inline detail with points (but you asked only links, so open link or alert)
+    card.addEventListener('click', (e)=>{
+      if(paperUrl) window.open(paperUrl,'_blank','noopener');
+      else alert('No manuscript URL set for this publication. Edit DATA.publications.'+k+'.paper in the source.');
+    });
+    cont.appendChild(card);
   });
 }
 
-function renderConferences() {
-  const container = document.getElementById('conferences-container');
-  container.innerHTML = '';
-  Object.keys(DATA.conferences).forEach(key => {
-    const conf = DATA.conferences[key];
-    const paperUrl = conf.paper && conf.paper !== '#' ? conf.paper : null;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <img src="images/conferences.jpg" alt="">
-      <h3>${escapeHtml(conf.title)}</h3>
-      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No link provided. Edit the DATA object in source to add a URL.')">Paper</a>`}
-    `;
-    card.addEventListener('click', () => showDetail('conference', key));
-    container.appendChild(card);
+function renderConferences(){
+  const cont = document.getElementById('conferences-container'); cont.innerHTML='';
+  Object.keys(DATA.conferences).forEach(k=>{
+    const p = DATA.conferences[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    const paperUrl = p.paper && p.paper !== '#' ? p.paper : '';
+    card.innerHTML = `<img src="images/conferences.jpg" alt=""><h3>${escapeHtml(p.title)}</h3>
+      <a class="paper-link" href="${escapeHtml(paperUrl || '#')}" ${paperUrl ? 'target="_blank" rel="noopener"' : ''}>Paper</a>`;
+    card.addEventListener('click', ()=>{
+      if(paperUrl) window.open(paperUrl,'_blank','noopener');
+      else alert('No manuscript URL set for this conference. Edit DATA.conferences.'+k+'.paper in the source.');
+    });
+    cont.appendChild(card);
   });
 }
 
-function renderResearch() {
-  const container = document.getElementById('research-container');
-  container.innerHTML = '';
-  Object.keys(DATA.research).forEach(key => {
-    const r = DATA.research[key];
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <img src="images/research1.jpg" alt="">
-      <h3>${escapeHtml(r.title)}</h3>
-    `;
-    card.addEventListener('click', () => showDetail('research', key));
-    container.appendChild(card);
+function renderResearch(){
+  const cont = document.getElementById('research-container'); cont.innerHTML='';
+  Object.keys(DATA.research).forEach(k=>{
+    const r = DATA.research[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    card.innerHTML = `<img src="images/research1.jpg" alt=""><h3>${escapeHtml(r.title)}</h3>`;
+    card.addEventListener('click', ()=>openPopup('Research', r.title, r.points, null));
+    cont.appendChild(card);
   });
 }
 
-function renderProjects() {
-  const container = document.getElementById('projects-container');
-  container.innerHTML = '';
-  Object.keys(DATA.projects).forEach(key => {
-    const p = DATA.projects[key];
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <img src="images/project1.jpg" alt="">
-      <h3>${escapeHtml(p.title)}</h3>
-    `;
-    card.addEventListener('click', () => showDetail('project', key));
-    container.appendChild(card);
+function renderProjects(){
+  const cont = document.getElementById('projects-container'); cont.innerHTML='';
+  Object.keys(DATA.projects).forEach(k=>{
+    const p = DATA.projects[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    card.innerHTML = `<img src="images/project1.jpg" alt=""><h3>${escapeHtml(p.title)}</h3>`;
+    card.addEventListener('click', ()=>openPopup('Project', p.title, p.points, p.detailLink || null));
+    cont.appendChild(card);
   });
 }
 
-function renderPositions() {
-  const container = document.getElementById('positions-container');
-  container.innerHTML = '';
-  Object.keys(DATA.positions).forEach(key => {
-    const pos = DATA.positions[key];
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.tabIndex = 0;
-    card.innerHTML = `
-      <img src="images/positions.jpg" alt="">
-      <h3>${escapeHtml(pos.title)}</h3>
-    `;
-    card.addEventListener('click', () => showDetail('position', key));
-    container.appendChild(card);
+function renderPositions(){
+  const cont = document.getElementById('positions-container'); cont.innerHTML='';
+  Object.keys(DATA.positions).forEach(k=>{
+    const p = DATA.positions[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    card.innerHTML = `<img src="images/positions.jpg" alt=""><h3>${escapeHtml(p.title)}</h3>`;
+    card.addEventListener('click', ()=>openPopup('Position', p.title, p.points, p.detailLink || null));
+    cont.appendChild(card);
   });
 }
 
-/* --------------------------
-   Show/hide sections
-   -------------------------- */
-function showSection(id) {
-  const sections = document.querySelectorAll('.section');
-  let found = false;
-  sections.forEach(s => {
-    if (s.id === id) {
-      s.classList.add('active');
-      s.style.display = '';
-      found = true;
-    } else {
-      s.classList.remove('active');
-      s.style.display = 'none';
-    }
-  });
-  if (!found) {
-    // fallback to home
-    const home = document.getElementById('home');
-    sections.forEach(s => s.classList.remove('active'));
-    sections.forEach(s => s.style.display = 'none');
-    home.classList.add('active');
-    home.style.display = '';
-    console.warn('Section "' + id + '" not found. Returning to home.');
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+/* ---------- small popup (read-only) ---------- */
+const popupBackdrop = document.getElementById('popupBackdrop');
+const popupTitle = document.getElementById('popupTitle');
+const popupType = document.getElementById('popupType');
+const popupList = document.getElementById('popupList');
+const popupLinkArea = document.getElementById('popupLinkArea');
+
+function openPopup(typeLabel, title, pointsArray, optionalLink){
+  popupTitle.textContent = title || 'Item';
+  popupType.textContent = typeLabel || '';
+  popupList.innerHTML = listHtml(pointsArray || []);
+  if(optionalLink){
+    popupLinkArea.innerHTML = `<a class="paper-link" href="${escapeHtml(optionalLink)}" target="_blank" rel="noopener">Open link</a>`;
+  } else popupLinkArea.innerHTML = '';
+  popupBackdrop.style.display = 'flex';
+  popupBackdrop.setAttribute('aria-hidden','false');
 }
 
-/* --------------------------
-   Show detail for an item (read-only)
-   - type: 'research'|'project'|'position'|'publication'|'conference'
-   - key: the key in DATA[type], e.g., 'research1'
-   -------------------------- */
-function showDetail(type, key) {
-  const detailArea = document.getElementById('detail-content');
-  let item = null, title = '', points = [], link = null;
-
-  if (type === 'research') {
-    item = DATA.research[key];
-    title = item ? item.title : 'Not found';
-    points = item && item.points ? item.points : [];
-    link = item && item.detailLink ? item.detailLink : null;
-  } else if (type === 'project') {
-    item = DATA.projects[key];
-    title = item ? item.title : 'Not found';
-    points = item && item.points ? item.points : [];
-    link = item && item.detailLink ? item.detailLink : null;
-  } else if (type === 'position') {
-    item = DATA.positions[key];
-    title = item ? item.title : 'Not found';
-    points = item && item.points ? item.points : [];
-    link = item && item.detailLink ? item.detailLink : null;
-  } else if (type === 'publication') {
-    item = DATA.publications[key];
-    title = item ? item.title : 'Not found';
-    points = item && item.points ? item.points : [];
-    link = item && item.paper ? item.paper : null;
-  } else if (type === 'conference') {
-    item = DATA.conferences[key];
-    title = item ? item.title : 'Not found';
-    points = item && item.points ? item.points : [];
-    link = item && item.paper ? item.paper : null;
-  }
-
-  const linkHtml = link && link !== '#' ? `<a class="paper-link" href="${escapeHtml(link)}" target="_blank" rel="noopener">Open Link</a>` : '';
-
-  detailArea.innerHTML = `
-    <h3>${escapeHtml(title)}</h3>
-    <div class="muted">${escapeHtml(type.charAt(0).toUpperCase() + type.slice(1))}</div>
-    <div style="margin-bottom:12px;">
-      ${linkHtml}
-    </div>
-    <div>
-      <strong>Key points</strong>
-      <ul>
-        ${listFromArray(points)}
-      </ul>
-    </div>
-  `;
-  // show the detail section and set Back button target appropriately
-  if (type === 'research') {
-    document.querySelector('#detail .back-button').setAttribute('onclick', "showSection('researchList')");
-  } else if (type === 'project') {
-    document.querySelector('#detail .back-button').setAttribute('onclick', "showSection('projects')");
-  } else if (type === 'position') {
-    document.querySelector('#detail .back-button').setAttribute('onclick', "showSection('positions')");
-  } else if (type === 'publication' || type === 'conference') {
-    document.querySelector('#detail .back-button').setAttribute('onclick', "showSection('home')");
-  } else {
-    document.querySelector('#detail .back-button').setAttribute('onclick', "showSection('home')");
-  }
-
-  showSection('detail');
+function closePopup(){
+  popupBackdrop.style.display = 'none';
+  popupBackdrop.setAttribute('aria-hidden','true');
 }
 
-/* --------------------------
-   Initialize page content
-   -------------------------- */
-(function init() {
+/* close if clicking outside popup */
+popupBackdrop.addEventListener('click', (e)=>{ if(e.target===popupBackdrop) closePopup(); });
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && popupBackdrop.style.display==='flex') closePopup(); });
+
+/* ---------- show/hide sections ---------- */
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>{ s.style.display='none'; s.classList.remove('active'); });
+  const el = document.getElementById(id);
+  if(el){ el.style.display='block'; el.classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
+  else { document.getElementById('home').style.display='block'; document.getElementById('home').classList.add('active'); }
+}
+
+/* ---------- initialization ---------- */
+(function init(){
   renderPublications();
   renderConferences();
   renderResearch();
   renderProjects();
   renderPositions();
-
-  // ensure only the active section shows
-  document.querySelectorAll('.section').forEach(s => {
-    if (!s.classList.contains('active')) s.style.display = 'none';
-  });
-
-  // If you want to expose DATA for easy editing in browser (dev only), uncomment:
-  // window.DEBUG_DATA = DATA;
+  // ensure home shown if none active
+  document.querySelectorAll('.section').forEach(s=>{ if(!s.classList.contains('active')) s.style.display='none'; });
 })();
 </script>
 </body>
