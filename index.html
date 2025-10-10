@@ -1,219 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Vamshika Sutar — Grad School Portfolio</title>
 <style>
-    body { font-family: 'Segoe UI', Tahoma, sans-serif; margin:0; background:#f9f9f9; }
-    header { background:#1a1a1a; color:#fff; padding:20px; display:flex; align-items:center; justify-content:space-between; }
-    header .profile { display:flex; align-items:center; }
-    header img { border-radius:50%; width:100px; height:100px; margin-right:20px; border:2px solid #fff; }
-    header h1 { margin:0; font-size:26px; }
-    header p { margin:4px 0 0 0; font-size:14px; color:#ccc; }
-    header a { color:#fff; text-decoration:none; background:#0077cc; padding:8px 12px; border-radius:5px; font-size:14px; }
-    header a:hover { background:#005fa3; }
-    .container { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; }
-    .card { background:#fff; border-radius:8px; margin:20px; width:250px; box-shadow:0 4px 12px rgba(0,0,0,0.1); text-align:center; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s; }
-    .card:hover { transform: scale(1.05); box-shadow:0 6px 16px rgba(0,0,0,0.15); }
-    .card img { width:100%; height:180px; object-fit:cover; border-top-left-radius:8px; border-top-right-radius:8px; }
-    .card h3 { padding:12px; font-size:18px; }
-    .back-button { display:inline-block; margin:20px; padding:10px 20px; background:#333; color:#fff; border-radius:5px; cursor:pointer; font-size:14px; }
-    h2 { font-size:24px; color:#222; margin-top:20px; }
+  :root {
+    --bg: #f9f9f9;
+    --card-bg: #fff;
+    --muted: #6b7280;
+    --accent: #0077cc;
+    --header-bg: #111827;
+  }
+  html,body{height:100%;margin:0}
+  body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0;
+    background: var(--bg);
+    color: #111827;
+  }
+
+  header {
+    background: var(--header-bg);
+    color: #fff;
+    padding: 20px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  header .profile { display:flex; align-items:center; gap:16px; }
+  header img {
+    border-radius:50%;
+    width:84px;
+    height:84px;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,0.12);
+    background: #e5e7eb;
+  }
+  header h1 { margin:0; font-size:20px; line-height:1; }
+  header p { margin:4px 0 0 0; font-size:13px; color: #d1d5db; line-height:1.2; }
+  header a.cv {
+    color:#fff;
+    text-decoration:none;
+    background: var(--accent);
+    padding:8px 12px;
+    border-radius:6px;
+    font-size:14px;
+  }
+  header a.cv:hover{ background:#005fa3; }
+
+  .page {
+    padding: 28px 20px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .container {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    padding: 8px 0 24px 0;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius:10px;
+    margin:0;
+    width:260px;
+    box-shadow:0 6px 18px rgba(15,23,42,0.06);
+    text-align:center;
+    cursor:pointer;
+    transition: transform .16s ease, box-shadow .16s ease;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:focus, .card:hover { transform:translateY(-6px); box-shadow:0 12px 26px rgba(15,23,42,0.09); outline:none; }
+  .card img { width:100%; height:160px; object-fit:cover; display:block; }
+  .card h3 { padding:14px; font-size:16px; margin:0; color:#0f172a; line-height:1.25; }
+
+  .section { display:none; }
+  .section.active { display:block; }
+
+  .back-button {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:18px;
+    padding:8px 12px;
+    background:#111827;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+    text-decoration:none;
+    font-size:14px;
+  }
+  .back-button:hover { opacity:0.95; }
+
+  h2 { font-size:22px; color:#0f172a; margin:8px 0 18px 0; text-align:center; }
+  .meta { font-size:14px; color:var(--muted); text-align:center; margin-bottom:18px; }
+
+  /* responsive */
+  @media (max-width:640px){
+    header { flex-direction:column; align-items:flex-start; gap:12px; }
+    .container { gap:12px; }
+    .card { width:100%; max-width:420px; }
+  }
 </style>
 </head>
 <body>
-
 <header>
-    <div class="profile">
-        <img src="images/profile_placeholder.jpg" alt="Vamshika Sutar">
-        <div>
-            <h1>Vamshika Sutar</h1>
-            <p>
-                AI Research Enthusiast<br>
-                Bachelors in Civil Engineering<br>
-                Minor in Computer Science and Engineering
-            </p>
-           <p style="font-size:14px; color:#ccc;">
-    <a href="mailto:sutarvamshika@gmail.com" style="color:#ccc; text-decoration:none;">
-        sutarvamshika@gmail.com
-    </a>
-</p>
-        </div>
+  <div class="profile">
+    <img src="images/profile_placeholder.jpg" alt="Vamshika Sutar">
+    <div>
+      <h1>Vamshika Sutar</h1>
+      <p>
+        AI Research Enthusiast<br>
+        Bachelors in Civil Engineering — Minor in Computer Science & Engg.
+      </p>
+      <p style="margin-top:6px; font-size:13px; color:#d1d5db;">
+        <a href="mailto:sutarvamshika@gmail.com" style="color:#d1d5db; text-decoration:none;">
+          sutarvamshika@gmail.com
+        </a>
+      </p>
     </div>
-    <a href="Vamshika_Sutar_CV.pdf" target="_blank">Download CV</a>
+  </div>
+  <a class="cv" href="Vamshika_Sutar_CV.pdf" target="_blank" rel="noopener">Download CV</a>
 </header>
 
-<!-- HOME -->
-<div id="home" class="section">
-    <div class="container">
-        <div class="card" onclick="showSection('publications')">
-            <img src="images/publications.jpg" alt="Publications">
-            <h3>Publications</h3>
-        </div>
-        <div class="card" onclick="showSection('conferences')">
-            <img src="images/conferences.jpg" alt="Conferences">
-            <h3>Conferences & Symposiums</h3>
-        </div>
-        <div class="card" onclick="showSection('researchList')">
-            <img src="images/research.jpg" alt="Research Experience">
-            <h3>Research Experience</h3>
-        </div>
-        <div class="card" onclick="showSection('projects')">
-            <img src="images/projects.jpg" alt="Technical Projects">
-            <h3>Technical Projects</h3>
-        </div>
-        <div class="card" onclick="showSection('positions')">
-            <img src="images/positions.jpg" alt="Position of Responsibility">
-            <h3>Position of Responsibility</h3>
-        </div>
-        <div class="card" onclick="showSection('experience')">
-            <img src="images/professional.jpg" alt="Professional Experience">
-            <h3>Professional Experience</h3>
-        </div>
+<div id="home" class="section active page">
+  <div style="text-align:center; margin-bottom:8px;">
+    <h2 style="margin:0 0 6px 0;">Welcome — Portfolio</h2>
+    <p class="meta">Click a card to view details</p>
+  </div>
+
+  <div class="container" role="list">
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('publications')" onkeypress="if(event.key==='Enter') showSection('publications')">
+      <img src="images/publications.jpg" alt="">
+      <h3>Publications</h3>
     </div>
+
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('conferences')" onkeypress="if(event.key==='Enter') showSection('conferences')">
+      <img src="images/conferences.jpg" alt="">
+      <h3>Conferences & Symposiums</h3>
+    </div>
+
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('researchList')" onkeypress="if(event.key==='Enter') showSection('researchList')">
+      <img src="images/research.jpg" alt="">
+      <h3>Research Experience</h3>
+    </div>
+
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('projects')" onkeypress="if(event.key==='Enter') showSection('projects')">
+      <img src="images/projects.jpg" alt="">
+      <h3>Technical Projects</h3>
+    </div>
+
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('positions')" onkeypress="if(event.key==='Enter') showSection('positions')">
+      <img src="images/positions.jpg" alt="">
+      <h3>Position of Responsibility</h3>
+    </div>
+
+    <div class="card" role="listitem" tabindex="0" onclick="showSection('experience')" onkeypress="if(event.key==='Enter') showSection('experience')">
+      <img src="images/professional.jpg" alt="">
+      <h3>Professional Experience</h3>
+    </div>
+  </div>
 </div>
 
 <!-- PUBLICATIONS -->
-<div id="publications" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Publications</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('publication1')">
-            <img src="images/publications.jpg" alt="Publication 1">
-            <h3>Spatiotemporal deep learning models for detection of rapid intensification in cyclones</h3>
-        </div>
-        <div class="card" onclick="showSection('publication2')">
-            <img src="images/publications.jpg" alt="Publication 2">
-            <h3>Learning-Based Vision Systems for Semi-Autonomous Forklift
-Operation in Industrial Warehouse Environments</h3>
-        </div>
-        <div class="card" onclick="showSection('publication2')">
-            <img src="images/publications.jpg" alt="Publication 2">
-            <h3>Delhi air quality prediction using LSTM deep learning models with a focus on COVID-19
-lockdown</h3>
-        </div>
-         </div>
-        <div class="card" onclick="showSection('publication2')">
-            <img src="images/publications.jpg" alt="Publication 2">
-            <h3>Delhi air quality prediction using LSTM deep learning models with a focus on COVID-19
-lockdown</h3>
-        </div>
+<div id="publications" class="section page">
+  <a class="back-button" onclick="showSection('home')" role="button">← Home</a>
+  <h2>Publications</h2>
+  <div class="container">
+    <div class="card" tabindex="0" onclick="showSection('publication1')">
+      <img src="images/publications.jpg" alt="">
+      <h3>Spatiotemporal deep learning models for detection of rapid intensification in cyclones</h3>
     </div>
-        <div class="card" onclick="showSection('publication2')">
-            <img src="images/publications.jpg" alt="Publication 2">
-            <h3>Parkinson’s Disease Detection Using ComParE Features
-with Machine Learning and Deep Learning Approaches</h3>
-        </div>
+
+    <div class="card" tabindex="0" onclick="showSection('publication2')">
+      <img src="images/publications.jpg" alt="">
+      <h3>Learning-Based Vision Systems for Semi-Autonomous Forklift Operation</h3>
     </div>
+
+    <div class="card" tabindex="0" onclick="showSection('publication3')">
+      <img src="images/publications.jpg" alt="">
+      <h3>Delhi air quality prediction using LSTM deep learning models</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('publication4')">
+      <img src="images/publications.jpg" alt="">
+      <h3>Parkinson’s Disease Detection Using ComParE Features</h3>
+    </div>
+  </div>
 </div>
 
 <!-- CONFERENCES -->
-<div id="conferences" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Conferences & Symposiums</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('conference1')">
-            <img src="images/conferences.jpg" alt="Conference 1">
-            <h3>Conference Title 1</h3>
-        </div>
-        <div class="card" onclick="showSection('conference2')">
-            <img src="images/conferences.jpg" alt="Conference 2">
-            <h3>Conference Title 2</h3>
-        </div>
+<div id="conferences" class="section page">
+  <a class="back-button" onclick="showSection('home')">← Home</a>
+  <h2>Conferences & Symposiums</h2>
+  <div class="container">
+    <div class="card" tabindex="0" onclick="showSection('conference1')">
+      <img src="images/conferences.jpg" alt="">
+      <h3>Conference Title 1</h3>
     </div>
+    <div class="card" tabindex="0" onclick="showSection('conference2')">
+      <img src="images/conferences.jpg" alt="">
+      <h3>Conference Title 2</h3>
+    </div>
+  </div>
 </div>
 
 <!-- RESEARCH EXPERIENCE LIST -->
-<div id="researchList" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Research Experience</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('research1')">
-            <img src="images/research1.jpg" alt="Research 1">
-            <h3>Vision-based Learning Systems for Semi-Automated Forklifts in Warehouses </h3>
-        </div>
-        <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Intelligent Roadway Perception for Autonomous Driving Systems: Automated Object Detection
-& Scene Description Retrieval</h3>
-        </div>
-        <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Spatiotemporal deep learning models for forecasting rapid intensifying cyclones</h3>
-        </div>
-        <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Delhi Air Quality Prediction using Recursive Forecasting</h3>
-        </div>
-         <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Speech Signal Analysis for Parkinson’s Disease detection</h3>
-        </div>
-        <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Oral Potential Malignant Detection</h3>
-        </div>
-        <div class="card" onclick="showSection('research2')">
-            <img src="images/research2.jpg" alt="Research 2">
-            <h3>Concrete Surface Image Analysis</h3>
-        </div>
+<div id="researchList" class="section page">
+  <a class="back-button" onclick="showSection('home')">← Home</a>
+  <h2>Research Experience</h2>
+  <div class="container">
+    <div class="card" tabindex="0" onclick="showSection('research1')">
+      <img src="images/research1.jpg" alt="">
+      <h3>Vision-based Learning Systems for Semi-Automated Forklifts</h3>
     </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research2')">
+      <img src="images/research2.jpg" alt="">
+      <h3>Intelligent Roadway Perception for Autonomous Driving Systems</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research3')">
+      <img src="images/research3.jpg" alt="">
+      <h3>Spatiotemporal deep learning for forecasting rapidly intensifying cyclones</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research4')">
+      <img src="images/research4.jpg" alt="">
+      <h3>Delhi Air Quality Prediction using Recursive Forecasting</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research5')">
+      <img src="images/research5.jpg" alt="">
+      <h3>Speech Signal Analysis for Parkinson’s Disease Detection</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research6')">
+      <img src="images/research6.jpg" alt="">
+      <h3>Oral Potential Malignant Detection</h3>
+    </div>
+
+    <div class="card" tabindex="0" onclick="showSection('research7')">
+      <img src="images/research7.jpg" alt="">
+      <h3>Concrete Surface Image Analysis</h3>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH DETAIL PAGES (simple examples) -->
+<div id="research1" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Vision-based Learning Systems for Semi-Automated Forklifts</h2>
+  <p class="meta">University / Lab — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px; box-shadow:0 6px 16px rgba(2,6,23,0.04);">
+    <p><strong>Summary:</strong> Implemented vision models for object detection and scene understanding tailored to warehouse forklift autonomy.</p>
+    <p><strong>Key contributions:</strong></p>
+    <ul>
+      <li>Developed a dataset pipeline and trained detection/segmentation models.</li>
+      <li>Optimized model inference for near real-time operation.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="research2" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Intelligent Roadway Perception for Autonomous Driving Systems</h2>
+  <p class="meta">University of Alberta — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px; box-shadow:0 6px 16px rgba(2,6,23,0.04);">
+    <p><strong>Summary:</strong> Semantic segmentation of LiDAR 3D point clouds and multimodal scene description generation.</p>
+    <p><strong>Key contributions:</strong></p>
+    <ul>
+      <li>Implemented Point Transformer V2 for road and object detection in highway environments.</li>
+      <li>Generated textual scene descriptions using pretrained NLP models.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- add other research detail placeholders similarly -->
+<div id="research3" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Spatiotemporal deep learning for forecasting rapidly intensifying cyclones</h2>
+  <p class="meta">University / Group — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px; box-shadow:0 6px 16px rgba(2,6,23,0.04);">
+    <p>Short summary and contributions...</p>
+  </div>
+</div>
+
+<div id="research4" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Delhi Air Quality Prediction using Recursive Forecasting</h2>
+  <p class="meta">Project — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px;">
+    <p>Short summary and contributions...</p>
+  </div>
+</div>
+
+<div id="research5" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Speech Signal Analysis for Parkinson’s Disease Detection</h2>
+  <p class="meta">Project — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px;">
+    <p>Short summary and contributions...</p>
+  </div>
+</div>
+
+<div id="research6" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Oral Potential Malignant Detection</h2>
+  <p class="meta">Project — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px;">
+    <p>Short summary and contributions...</p>
+  </div>
+</div>
+
+<div id="research7" class="section page">
+  <a class="back-button" onclick="showSection('researchList')">← Back</a>
+  <h2>Concrete Surface Image Analysis</h2>
+  <p class="meta">Project — Duration</p>
+  <div style="max-width:880px; margin:0 auto; background:#fff; border-radius:10px; padding:18px;">
+    <p>Short summary and contributions...</p>
+  </div>
 </div>
 
 <!-- PROJECTS -->
-<div id="projects" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Technical Projects</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('project1')">
-            <img src="images/project1.jpg" alt="Project 1">
-            <h3>AI for Customer Review Classification</h3>
-        </div>
-        <div class="card" onclick="showSection('project2')">
-            <img src="images/project2.jpg" alt="Project 2">
-            <h3>Optimizing Stock Trading with Reinforcement Learning</h3>
-        </div>
-        <div class="card" onclick="showSection('project2')">
-            <img src="images/project2.jpg" alt="Project 2">
-            <h3>AI-based Recommendation System</h3>
-        </div>
-        <div class="card" onclick="showSection('project2')">
-            <img src="images/project2.jpg" alt="Project 2">
-            <h3>Reinforcement Learning-based Policy Optimization for Frozen Lake Game</h3>
-        </div>
+<div id="projects" class="section page">
+  <a class="back-button" onclick="showSection('home')">← Home</a>
+  <h2>Technical Projects</h2>
+  <div class="container">
+    <div class="card" tabindex="0" onclick="showSection('project1')">
+      <img src="images/project1.jpg" alt="">
+      <h3>AI for Customer Review Classification</h3>
     </div>
+    <div class="card" tabindex="0" onclick="showSection('project2')">
+      <img src="images/project2.jpg" alt="">
+      <h3>Optimizing Stock Trading with Reinforcement Learning</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('project3')">
+      <img src="images/project2.jpg" alt="">
+      <h3>AI-based Recommendation System</h3>
+    </div>
+  </div>
 </div>
 
 <!-- POSITIONS -->
-<div id="positions" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Position of Responsibility</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('position1')">
-            <img src="images/positions.jpg" alt="Position 1">
-            <h3>Teaching Assistant - Computer programming and Utilization (CS 101)</h3>
-        </div>
+<div id="positions" class="section page">
+  <a class="back-button" onclick="showSection('home')">← Home</a>
+  <h2>Position of Responsibility</h2>
+  <div class="container">
+    <div class="card" tabindex="0">
+      <img src="images/positions.jpg" alt="">
+      <h3>Teaching Assistant - Computer Programming and Utilization (CS 101)</h3>
     </div>
+  </div>
 </div>
 
 <!-- EXPERIENCE -->
-<div id="experience" class="section" style="display:none;">
-    <span class="back-button" onclick="showSection('home')">← Home</span>
-    <h2 style="text-align:center;">Professional Experience</h2>
-    <div class="container">
-        <div class="card" onclick="showSection('experience1')">
-            <img src="images/professional.jpg" alt="Experience 1">
-            <h3> IQVIA (India) Pvt. Ltd.</h3>
-        </div>
+<div id="experience" class="section page">
+  <a class="back-button" onclick="showSection('home')">← Home</a>
+  <h2>Professional Experience</h2>
+  <div class="container">
+    <div class="card" tabindex="0">
+      <img src="images/professional.jpg" alt="">
+      <h3>IQVIA (India) Pvt. Ltd.</h3>
     </div>
+  </div>
 </div>
 
+<!-- Minimal JS to switch sections -->
 <script>
-function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-}
+  function showSection(id) {
+    const sections = document.querySelectorAll('.section');
+    let found = false;
+    sections.forEach(s => {
+      if (s.id === id) {
+        s.classList.add('active');
+        s.style.display = ''; // let CSS handle it
+        found = true;
+      } else {
+        s.classList.remove('active');
+        s.style.display = 'none';
+      }
+    });
+    // fallback to home if id not found
+    if (!found) {
+      const home = document.getElementById('home');
+      sections.forEach(s => s.classList.remove('active'));
+      sections.forEach(s => s.style.display = 'none');
+      home.classList.add('active');
+      home.style.display = '';
+      console.warn('Section "' + id + '" not found. Returning to home.');
+    }
+    // scroll top of page for better UX
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ensure initial state: show .active or home
+  (function init(){
+    const active = document.querySelector('.section.active');
+    if (!active) showSection('home');
+    else {
+      document.querySelectorAll('.section').forEach(s => {
+        if (!s.classList.contains('active')) s.style.display = 'none';
+      });
+    }
+  })();
 </script>
 </body>
 </html>
