@@ -51,7 +51,7 @@
 
 <header>
   <div class="profile">
-    <img src="images/profile_placeholder.jpg" alt="Vamshika Sutar">
+    <img src="images/profile.jpg" alt="Vamshika Sutar">
     <div>
       <h1>Hi, I'm Vamshika Sutar</h1>
       <p>
@@ -63,6 +63,7 @@
       </p>
     </div>
   </div>
+  <a class="cv" href="Vamshika_Sutar_CV.pdf" target="_blank" rel="noopener">Download CV</a>
 </header>
 
 <script>
@@ -71,13 +72,15 @@
   For Research/Projects/Positions: use keys (example research1) with:
     - popupHeading: string (big heading, e.g. employer)
     - popupLines: array of strings (first item will be italic + underlined)
-  For Publications/Conferences: set `paper` to manuscript URL (direct link).
+    - image: relative path to thumbnail in images/ (e.g. "images/research1.jpg")
+  For Publications/Conferences: set `paper` to manuscript URL and `image` to thumbnail path.
 */
 const DATA = {
   research: {
     research1: {
       title: "Vision-based Learning Systems for Semi-Automated Forklifts",
       popupHeading: "Vision-based Learning Systems for Semi-Automated Forklifts",
+      image: "images/research1.jpg",
       popupLines: [
         "Bachelors Thesis Project",
         "Guide: Prof. Archak Mittal",
@@ -86,7 +89,8 @@ const DATA = {
     },
     research2: {
       title: "Intelligent Roadway Perception for Autonomous Driving Systems: Automated Object Detection & Scene Description Retrieval",
-      popupHeading: "Intelligent Roadway Perception for Autonomous Driving Systems: Automated Object Detection & Scene Description Retrieval",
+      popupHeading: "Intelligent Roadway Perception for Autonomous Driving Systems",
+      image: "images/research2.jpg",
       popupLines: [
         "Research Intern",
         "Guide: Prof. Karim El-Basyouny",
@@ -95,8 +99,9 @@ const DATA = {
       ]
     },
     research3: {
-      title: "Spatiotemporal deep learning models for forecasting rapid intensifying cyclones",
-      popupHeading: "Spatiotemporal deep learning models for forecasting rapid intensifying cyclones",
+      title: "Spatiotemporal deep learning models for forecasting rapidly intensifying cyclones",
+      popupHeading: "Spatiotemporal deep learning models for forecasting rapidly intensifying cyclones",
+      image: "images/research3.jpg",
       popupLines: [
         "Research Intern",
         "Guide: Prof. Rohitash Chandra",
@@ -107,6 +112,7 @@ const DATA = {
     research4: {
       title: "Delhi Air Quality Prediction",
       popupHeading: "Delhi Air Quality Prediction",
+      image: "images/research4.jpg",
       popupLines: [
         "Research Intern",
         "Guide: Prof. Rohitash Chandra",
@@ -117,6 +123,7 @@ const DATA = {
     research5: {
       title: "Speech Signal Analysis for Parkinson’s Disease detection",
       popupHeading: "Speech Signal Analysis for Parkinson’s Disease detection",
+      image: "images/research5.jpg",
       popupLines: [
         "Research and Development Project",
         "Guide: Prof. Nirmal Punjabi",
@@ -127,6 +134,7 @@ const DATA = {
     research6: {
       title: "Oral Potential Malignant Detection",
       popupHeading: "Oral Potential Malignant Detection",
+      image: "images/research6.jpg",
       popupLines: [
         "Research and Development Project",
         "Guide: Prof. Nirmal Punjabi",
@@ -137,6 +145,7 @@ const DATA = {
     research7: {
       title: "Concrete Surface Image Analysis",
       popupHeading: "Concrete Surface Image Analysis",
+      image: "images/research7.jpg",
       popupLines: [
         "Research and Development Project",
         "Guides: Prof. Abir De, Prof. Alankar",
@@ -150,6 +159,7 @@ const DATA = {
     project1: {
       title: "AI for Customer Review Classification",
       popupHeading: "AI for Customer Review Classification",
+      image: "images/project1.jpg",
       popupLines: [
         "Course Project : CS 419 - Introduction to Machine Learning",
         "Guide: Prof. Abir De"
@@ -158,6 +168,7 @@ const DATA = {
     project2: {
       title: "Optimizing Stock Trading with Reinforcement Learning",
       popupHeading: "Optimizing Stock Trading with Reinforcement Learning",
+      image: "images/project2.jpg",
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
@@ -166,6 +177,7 @@ const DATA = {
     project3: {
       title: "AI-based Recommendation System",
       popupHeading: "AI-based Recommendation System",
+      image: "images/project3.jpg",
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
@@ -177,6 +189,7 @@ const DATA = {
     position1: {
       title: "Teaching Assistant - CS101 Course - Computer Programming and Utilization",
       popupHeading: "Teaching Assistant - CS101",
+      image: "images/position1.jpg",
       popupLines: [
         "Course Instructors - Prof. Mythili Vutukuru, Prof. Suyash Awate",
         "Department of Computer Science and Engineering",
@@ -185,16 +198,29 @@ const DATA = {
     }
   },
 
+  experience: {
+    experience1: {
+      title: "IQVIA (India) Pvt. Ltd.",
+      popupHeading: "IQVIA (India) Pvt. Ltd.",
+      image: "images/professional.jpg",
+      popupLines: [
+        "Analyst",
+        "Data, tech and AI",
+        "India Management Consulting Team"
+      ]
+    }
+  },
+
   publications: {
-    publication1: { title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones", paper: "https://www.arxiv.org/abs/2506.08397" },
-    publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation", paper: "#" },
-    publication3: { title: "Delhi air quality prediction using LSTM", paper: "#" },
-    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "#" }
+    publication1: { title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones", paper: "https://www.arxiv.org/abs/2506.08397", image: "images/publication1.jpg" },
+    publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation", paper: "#", image: "images/publication2.jpg" },
+    publication3: { title: "Delhi air quality prediction using LSTM", paper: "#", image: "images/publication3.jpg" },
+    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "#", image: "images/publication4.jpg" }
   },
 
   conferences: {
-    conference1: { title: "Evaluating Semantic Segmentation-Based Scene Descriptions for Rural Highway Point Clouds", paper: "https://github.com/VamshikaSutar/Reports-and-Presentations/blob/main/IRF%20Conference.pdf" },
-    conference2: { title: "Intelligent RoadwayAnalysis: Automated Object Identification and Scene Description Retrieval for Highway Features", paper: "https://github.com/VamshikaSutar/Reports-and-Presentations/blob/main/University%20of%20Alberta%20International%20Symposium%20Poster.pdf" }
+    conference1: { title: "Evaluating Semantic Segmentation-Based Scene Descriptions for Rural Highway Point Clouds", paper: "https://github.com/VamshikaSutar/Reports-and-Presentations/blob/main/IRF%20Conference.pdf", image: "images/conference1.jpg" },
+    conference2: { title: "Intelligent Roadway Analysis: Automated Object Identification and Scene Description Retrieval for Highway Features", paper: "https://github.com/VamshikaSutar/Reports-and-Presentations/blob/main/University%20of%20Alberta%20International%20Symposium%20Poster.pdf", image: "images/conference2.jpg" }
   }
 };
 </script>
@@ -209,9 +235,9 @@ const DATA = {
   <div class="container">
     <div class="card" tabindex="0" onclick="showSection('publications')"><img src="images/publications.jpg" alt=""><h3>Publications</h3></div>
     <div class="card" tabindex="0" onclick="showSection('conferences')"><img src="images/conferences.jpg" alt=""><h3>Conferences & Symposiums</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="images/research.jpg" alt=""><h3>Research Experience</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="Technical Projects.jpg" alt=""><h3>Technical Projects</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="IIB Logo.png" alt=""><h3>Position of Responsibility</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="images/research1.jpg" alt=""><h3>Research Experience</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="images/project1.jpg" alt=""><h3>Technical Projects</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="images/position1.jpg" alt=""><h3>Position of Responsibility</h3></div>
     <div class="card" tabindex="0" onclick="showSection('experience')"><img src="images/professional.jpg" alt=""><h3>Professional Experience</h3></div>
   </div>
 </div>
@@ -255,9 +281,7 @@ const DATA = {
 <div id="experience" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
   <h2>Professional Experience</h2>
-  <div class="container">
-    <div class="card" tabindex="0" onclick="openPopup('IQVIA (India) Pvt. Ltd.','Professional Experience',['Analyst','Data, tech and AI','India Management Consulting Team'], null)"><img src="images/professional.jpg" alt=""><h3>IQVIA (India) Pvt. Ltd.</h3></div>
-  </div>
+  <div class="container" id="experience-container"></div>
 </div>
 
 <!-- Popup (read-only) -->
@@ -282,15 +306,15 @@ const DATA = {
 /* helpers */
 function escapeHtml(s){ return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
 
-/* render cards */
-
+/* render cards - use item.image if provided, else fallback */
 function renderPublications(){
   const c = document.getElementById('publications-container'); c.innerHTML='';
   Object.keys(DATA.publications).forEach(k=>{
     const it = DATA.publications[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    card.innerHTML = `<img src="images/publications.jpg" alt=""><h3>${escapeHtml(it.title)}</h3>
+    const img = it.image ? escapeHtml(it.image) : 'images/publications.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
       ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.publications.${k}.paper')">Paper</a>`}`;
     card.addEventListener('click', ()=>{
       if(paperUrl) window.open(paperUrl,'_blank','noopener');
@@ -306,7 +330,8 @@ function renderConferences(){
     const it = DATA.conferences[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    card.innerHTML = `<img src="images/conferences.jpg" alt=""><h3>${escapeHtml(it.title)}</h3>
+    const img = it.image ? escapeHtml(it.image) : 'images/conferences.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
       ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.conferences.${k}.paper')">Paper</a>`}`;
     card.addEventListener('click', ()=>{
       if(paperUrl) window.open(paperUrl,'_blank','noopener');
@@ -321,7 +346,8 @@ function renderResearch(){
   Object.keys(DATA.research).forEach(k=>{
     const it = DATA.research[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    card.innerHTML = `<img src="images/research1.jpg" alt=""><h3>${escapeHtml(it.title)}</h3>`;
+    const img = it.image ? escapeHtml(it.image) : 'images/research1.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Research', it.popupLines || [], null));
     c.appendChild(card);
   });
@@ -332,7 +358,8 @@ function renderProjects(){
   Object.keys(DATA.projects).forEach(k=>{
     const it = DATA.projects[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    card.innerHTML = `<img src="images/project1.jpg" alt=""><h3>${escapeHtml(it.title)}</h3>`;
+    const img = it.image ? escapeHtml(it.image) : 'images/project1.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Project', it.popupLines || [], it.detailLink || null));
     c.appendChild(card);
   });
@@ -343,8 +370,21 @@ function renderPositions(){
   Object.keys(DATA.positions).forEach(k=>{
     const it = DATA.positions[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    card.innerHTML = `<img src="images/positions.jpg" alt=""><h3>${escapeHtml(it.title)}</h3>`;
+    const img = it.image ? escapeHtml(it.image) : 'images/position1.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Position', it.popupLines || [], it.detailLink || null));
+    c.appendChild(card);
+  });
+}
+
+function renderExperience(){
+  const c = document.getElementById('experience-container'); c.innerHTML='';
+  Object.keys(DATA.experience).forEach(k=>{
+    const it = DATA.experience[k];
+    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
+    const img = it.image ? escapeHtml(it.image) : 'images/professional.jpg';
+    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
+    card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Professional Experience', it.popupLines || [], it.detailLink || null));
     c.appendChild(card);
   });
 }
@@ -358,7 +398,6 @@ const popupExtraLink = document.getElementById('popupExtraLink');
 
 function openPopup(bigHeading, contextLabel, linesArray, optionalLink){
   popupHeading.textContent = bigHeading || '';
-  // show context label (e.g. "Research") in muted line above bullets
   popupContext.textContent = contextLabel || '';
   popupLines.innerHTML = '';
   if(!linesArray || !linesArray.length){
@@ -401,6 +440,7 @@ function showSection(id){
   renderResearch();
   renderProjects();
   renderPositions();
+  renderExperience();
   // ensure sections hidden except home
   document.querySelectorAll('.section').forEach(s=>{ if(!s.classList.contains('active')) s.style.display='none'; });
 })();
