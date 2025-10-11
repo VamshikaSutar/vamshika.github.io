@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Vamshika Sutar — Portfolio (popups styled)</title>
+<title>Vamshika Sutar — Portfolio</title>
 <style>
   :root{
     --bg:#f9f9f9; --card:#fff; --muted:#6b7280; --accent:#0077cc; --dark:#111827;
@@ -19,7 +19,16 @@
   .container{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
   .card{width:260px;background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;transition:transform .14s, box-shadow .14s}
   .card:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(2,6,23,0.08)}
-  .card img{width:100%;height:150px;object-fit:cover;display:block}
+  /* show full image inside thumbnail (no cropping) */
+  .card img{
+    width:100%;
+    height:150px;
+    object-fit:contain;       /* preserve whole image */
+    display:block;
+    background:#fff;
+    padding:8px;              /* small padding to avoid touching edges */
+    box-sizing:border-box;
+  }
   .card h3{padding:12px;margin:0;font-size:15px;line-height:1.2}
   .paper-link{display:inline-block;margin:8px auto 16px auto;padding:6px 10px;border-radius:6px;background:#0f172a;color:#fff;text-decoration:none;font-size:13px}
   .section{display:none}
@@ -28,11 +37,10 @@
   h2{text-align:center;margin:6px 0 14px 0;font-size:22px}
   .meta{text-align:center;color:var(--muted);margin-bottom:12px}
   .detail-box{max-width:780px;margin:0 auto;background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 28px rgba(2,6,23,0.06)}
-  /* small popup modal using the visual style from your image */
+  /* popup */
   .popup-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.36);display:none;align-items:center;justify-content:center;z-index:1200}
   .popup{width:min(560px,94%);background:#fff;border-radius:10px;padding:18px;box-shadow:0 20px 60px rgba(2,6,23,0.35);font-size:14px;line-height:1.4}
   .popup .heading-big{font-size:32px;font-weight:700;margin:0 0 10px 0}
-  /* left bar + content */
   .popup-row{display:flex;gap:14px;align-items:flex-start}
   .popup-bar{width:6px;background:#1f2937;border-radius:2px;min-height:120px;flex:0 0 6px; margin-top:6px}
   .popup-lines{flex:1}
@@ -42,9 +50,13 @@
   .popup .popup-actions{display:flex;justify-content:flex-end;margin-top:12px;gap:8px}
   .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:14px}
   .btn.ghost{background:#eef2ff;color:#0f172a}
-  /* link styling inside popup */
   .popup a.paper-link{display:inline-block;margin:8px 0 0 0}
-  @media (max-width:640px){ .card{width:100%;max-width:420px} header{flex-direction:column;align-items:flex-start} .popup{width:96%} .popup .heading-big{font-size:24px} }
+  @media (max-width:640px){
+    .card{width:100%;max-width:420px}
+    header{flex-direction:column;align-items:flex-start}
+    .popup{width:96%}
+    .popup .heading-big{font-size:24px}
+  }
 </style>
 </head>
 <body>
@@ -67,20 +79,16 @@
 </header>
 
 <script>
-/*
-  DATA: edit the entries below.
-  For Research/Projects/Positions: use keys (example research1) with:
-    - popupHeading: string (big heading, e.g. employer)
-    - popupLines: array of strings (first item will be italic + underlined)
-    - image: relative path to thumbnail in images/ (e.g. "images/research1.jpg")
-  For Publications/Conferences: set `paper` to manuscript URL and `image` to thumbnail path.
-*/
+/* helpers */
+function escapeHtml(s){ return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+
+/* DATA - updated to use the image filenames you provided */
 const DATA = {
   research: {
     research1: {
       title: "Vision-based Learning Systems for Semi-Automated Forklifts",
       popupHeading: "Vision-based Learning Systems for Semi-Automated Forklifts",
-      image: "images/research1.jpg",
+      image: "images/research1.png",
       popupLines: [
         "Bachelors Thesis Project",
         "Guide: Prof. Archak Mittal",
@@ -88,9 +96,9 @@ const DATA = {
       ]
     },
     research2: {
-      title: "Intelligent Roadway Perception for Autonomous Driving Systems: Automated Object Detection & Scene Description Retrieval",
+      title: "Intelligent Roadway Perception for Autonomous Driving Systems",
       popupHeading: "Intelligent Roadway Perception for Autonomous Driving Systems",
-      image: "images/research2.jpg",
+      image: "images/research2.png",
       popupLines: [
         "Research Intern",
         "Guide: Prof. Karim El-Basyouny",
@@ -98,8 +106,9 @@ const DATA = {
         "University of Alberta"
       ]
     },
+    /* YOU REQUESTED THESE EXACT IMAGE NAMES — placed under images/ with spaces preserved */
     research3: {
-      title: "Spatiotemporal deep learning models for forecasting rapidly intensifying cyclones",
+      title: "Spatiotemporal deep learning models for forecasting rapid intensifying cyclones",
       popupHeading: "Spatiotemporal deep learning models for forecasting rapidly intensifying cyclones",
       image: "Screenshot 2025-10-11 003517.png",
       popupLines: [
@@ -123,7 +132,7 @@ const DATA = {
     research5: {
       title: "Speech Signal Analysis for Parkinson’s Disease detection",
       popupHeading: "Speech Signal Analysis for Parkinson’s Disease detection",
-      image: "images/research5.jpg",
+      image: "images/research5.png",
       popupLines: [
         "Research and Development Project",
         "Guide: Prof. Nirmal Punjabi",
@@ -159,7 +168,7 @@ const DATA = {
     project1: {
       title: "AI for Customer Review Classification",
       popupHeading: "AI for Customer Review Classification",
-      image: "images/project1.jpg",
+      image: "images/project1.png",
       popupLines: [
         "Course Project : CS 419 - Introduction to Machine Learning",
         "Guide: Prof. Abir De"
@@ -168,7 +177,7 @@ const DATA = {
     project2: {
       title: "Optimizing Stock Trading with Reinforcement Learning",
       popupHeading: "Optimizing Stock Trading with Reinforcement Learning",
-      image: "images/project2.jpg",
+      image: "images/project2.png",
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
@@ -177,7 +186,7 @@ const DATA = {
     project3: {
       title: "AI-based Recommendation System",
       popupHeading: "AI-based Recommendation System",
-      image: "images/project3.jpg",
+      image: "images/project3.png",
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
@@ -187,9 +196,9 @@ const DATA = {
 
   positions: {
     position1: {
-      title: "Teaching Assistant - CS101 Course - Computer Programming and Utilization",
+      title: "Teaching Assistant - CS101",
       popupHeading: "Teaching Assistant - CS101",
-      image: "images/position1.jpg",
+      image: "images/position1.png",
       popupLines: [
         "Course Instructors - Prof. Mythili Vutukuru, Prof. Suyash Awate",
         "Department of Computer Science and Engineering",
@@ -202,7 +211,7 @@ const DATA = {
     experience1: {
       title: "IQVIA (India) Pvt. Ltd.",
       popupHeading: "IQVIA (India) Pvt. Ltd.",
-      image: "images/professional.jpg",
+      image: "images/professional.png",
       popupLines: [
         "Analyst",
         "Data, tech and AI",
@@ -213,9 +222,9 @@ const DATA = {
 
   publications: {
     publication1: { title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones", paper: "https://www.arxiv.org/abs/2506.08397", image: "Screenshot 2025-10-11 003517.png" },
-    publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation", paper: "#", image: "images/publication2.jpg" },
+    publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation", paper: "#", image: "images/publication2.png" },
     publication3: { title: "Delhi air quality prediction using LSTM", paper: "#", image: "Screenshot 2025-10-11 004010.png" },
-    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "#", image: "images/publication4.jpg" }
+    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "#", image: "images/publication4.png" }
   },
 
   conferences: {
@@ -233,12 +242,12 @@ const DATA = {
   </div>
 
   <div class="container">
-    <div class="card" tabindex="0" onclick="showSection('publications')"><img src="images/publications.jpg" alt=""><h3>Publications</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('conferences')"><img src="images/conferences.jpg" alt=""><h3>Conferences & Symposiums</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="images/research1.jpg" alt=""><h3>Research Experience</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="images/project1.jpg" alt=""><h3>Technical Projects</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="images/position1.jpg" alt=""><h3>Position of Responsibility</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('experience')"><img src="images/professional.jpg" alt=""><h3>Professional Experience</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('publications')"><img src="images/publications.png" alt=""><h3>Publications</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('conferences')"><img src="images/conferences.png" alt=""><h3>Conferences & Symposiums</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="images/research1.png" alt=""><h3>Research Experience</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="images/project1.png" alt=""><h3>Technical Projects</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="images/position1.png" alt=""><h3>Position of Responsibility</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('experience')"><img src="images/professional.png" alt=""><h3>Professional Experience</h3></div>
   </div>
 </div>
 
@@ -303,17 +312,14 @@ const DATA = {
 </div>
 
 <script>
-/* helpers */
-function escapeHtml(s){ return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
-
-/* render cards - use item.image if provided, else fallback */
+/* render functions */
 function renderPublications(){
   const c = document.getElementById('publications-container'); c.innerHTML='';
-  Object.keys(DATA.publications).forEach(k=>{
+  Object.keys(DATA.publications || {}).forEach(k=>{
     const it = DATA.publications[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    const img = it.image ? escapeHtml(it.image) : 'images/publications.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/publications.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
       ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.publications.${k}.paper')">Paper</a>`}`;
     card.addEventListener('click', ()=>{
@@ -326,11 +332,11 @@ function renderPublications(){
 
 function renderConferences(){
   const c = document.getElementById('conferences-container'); c.innerHTML='';
-  Object.keys(DATA.conferences).forEach(k=>{
+  Object.keys(DATA.conferences || {}).forEach(k=>{
     const it = DATA.conferences[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    const img = it.image ? escapeHtml(it.image) : 'images/conferences.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/conferences.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
       ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.conferences.${k}.paper')">Paper</a>`}`;
     card.addEventListener('click', ()=>{
@@ -343,10 +349,10 @@ function renderConferences(){
 
 function renderResearch(){
   const c = document.getElementById('research-container'); c.innerHTML='';
-  Object.keys(DATA.research).forEach(k=>{
+  Object.keys(DATA.research || {}).forEach(k=>{
     const it = DATA.research[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/research1.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/research1.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Research', it.popupLines || [], null));
     c.appendChild(card);
@@ -355,10 +361,10 @@ function renderResearch(){
 
 function renderProjects(){
   const c = document.getElementById('projects-container'); c.innerHTML='';
-  Object.keys(DATA.projects).forEach(k=>{
+  Object.keys(DATA.projects || {}).forEach(k=>{
     const it = DATA.projects[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/project1.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/project1.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Project', it.popupLines || [], it.detailLink || null));
     c.appendChild(card);
@@ -367,10 +373,10 @@ function renderProjects(){
 
 function renderPositions(){
   const c = document.getElementById('positions-container'); c.innerHTML='';
-  Object.keys(DATA.positions).forEach(k=>{
+  Object.keys(DATA.positions || {}).forEach(k=>{
     const it = DATA.positions[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/position1.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/position1.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Position', it.popupLines || [], it.detailLink || null));
     c.appendChild(card);
@@ -379,10 +385,10 @@ function renderPositions(){
 
 function renderExperience(){
   const c = document.getElementById('experience-container'); c.innerHTML='';
-  Object.keys(DATA.experience).forEach(k=>{
+  Object.keys(DATA.experience || {}).forEach(k=>{
     const it = DATA.experience[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/professional.jpg';
+    const img = it.image ? escapeHtml(it.image) : 'images/professional.png';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
     card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Professional Experience', it.popupLines || [], it.detailLink || null));
     c.appendChild(card);
