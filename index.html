@@ -19,17 +19,28 @@
   .container{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
   .card{width:260px;background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;transition:transform .14s, box-shadow .14s}
   .card:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(2,6,23,0.08)}
-  /* show full image inside thumbnail (no cropping) */
   .card img{
     width:100%;
     height:150px;
-    object-fit:contain;       /* preserve whole image */
+    object-fit:contain;
     display:block;
     background:#fff;
-    padding:8px;              /* small padding to avoid touching edges */
+    padding:8px;
     box-sizing:border-box;
   }
   .card h3{padding:12px;margin:0;font-size:15px;line-height:1.2}
+  .card .card-tag{
+    margin:0 12px 12px 12px;
+    display:inline-block;
+    font-size:11px;
+    padding:2px 8px;
+    border-radius:4px;
+    font-weight:600;
+    letter-spacing:0.03em;
+  }
+  .tag-se{background:#dbeafe;color:#1e40af}
+  .tag-ai{background:#ede9fe;color:#5b21b6}
+  .tag-both{background:#dcfce7;color:#166534}
   .paper-link{display:inline-block;margin:8px auto 16px auto;padding:6px 10px;border-radius:6px;background:#0f172a;color:#fff;text-decoration:none;font-size:13px}
   .section{display:none}
   .section.active{display:block}
@@ -37,12 +48,14 @@
   h2{text-align:center;margin:6px 0 14px 0;font-size:22px}
   .meta{text-align:center;color:var(--muted);margin-bottom:12px}
   .detail-box{max-width:780px;margin:0 auto;background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 28px rgba(2,6,23,0.06)}
-  /* popup */
+  .filter-bar{display:flex;gap:8px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+  .filter-btn{padding:6px 14px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;cursor:pointer;font-size:13px;font-weight:500;color:#374151;transition:all .12s}
+  .filter-btn.active{background:#0f172a;color:#fff;border-color:#0f172a}
   .popup-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.36);display:none;align-items:center;justify-content:center;z-index:1200}
   .popup{width:min(560px,94%);background:#fff;border-radius:10px;padding:18px;box-shadow:0 20px 60px rgba(2,6,23,0.35);font-size:14px;line-height:1.4}
-  .popup .heading-big{font-size:32px;font-weight:700;margin:0 0 10px 0}
+  .popup .heading-big{font-size:28px;font-weight:700;margin:0 0 10px 0}
   .popup-row{display:flex;gap:14px;align-items:flex-start}
-  .popup-bar{width:6px;background:#1f2937;border-radius:2px;min-height:120px;flex:0 0 6px; margin-top:6px}
+  .popup-bar{width:6px;background:#1f2937;border-radius:2px;min-height:120px;flex:0 0 6px;margin-top:6px}
   .popup-lines{flex:1}
   .popup-lines li{margin:8px 0}
   .popup-lines li:first-child{font-style:italic;text-decoration:underline}
@@ -51,11 +64,13 @@
   .btn{padding:8px 10px;border-radius:8px;border:0;cursor:pointer;font-size:14px}
   .btn.ghost{background:#eef2ff;color:#0f172a}
   .popup a.paper-link{display:inline-block;margin:8px 0 0 0}
+  .skills-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .skill-pill{background:#f1f5f9;color:#334155;font-size:11px;padding:3px 8px;border-radius:4px;font-weight:500}
   @media (max-width:640px){
     .card{width:100%;max-width:420px}
     header{flex-direction:column;align-items:flex-start}
     .popup{width:96%}
-    .popup .heading-big{font-size:24px}
+    .popup .heading-big{font-size:22px}
   }
 </style>
 </head>
@@ -66,32 +81,31 @@
     <img src="Photo_Vamshika.jpg" alt="Vamshika Sutar">
     <div>
       <h1>Hi, I'm Vamshika Sutar</h1>
-      <p>
-        AI Research Enthusiast<br>
-        Bachelor's in Civil Engineering & Minor in Computer Science & Engineering
+      <p>Software Engineer &amp; AI Researcher</p>
+      <p style="margin-top:3px;color:#d1d5db;font-size:13px">
+        Backend &amp; Full-Stack Development &nbsp;·&nbsp; Agentic AI Systems &nbsp;·&nbsp; Computer Vision
       </p>
-      <p>
-        Research Interests: Computer Vision and Deep Learning
+      <p style="margin-top:3px;color:#9ca3af;font-size:12px">
+        B.Tech Engineering, IIT Bombay &nbsp;·&nbsp; Minor: Computer Science &amp; Engineering
       </p>
       <p style="margin-top:6px;font-size:13px;color:#d1d5db;">
-        <a href="mailto:vamshikasutar.iitb@gmail.com" style="color:#d1d5db;text-decoration:none;">Contact: vamshikasutar.iitb@gmail.com</a>
+        <a href="mailto:vamshikasutar.iitb@gmail.com" style="color:#93c5fd;text-decoration:none;">vamshikasutar.iitb@gmail.com</a>
       </p>
     </div>
   </div>
- 
 </header>
 
 <script>
-/* helpers */
 function escapeHtml(s){ return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
 
-/* DATA - updated to use the image filenames you provided */
 const DATA = {
   research: {
     research1: {
       title: "Vision-based Learning Systems for Semi-Automated Forklifts",
       popupHeading: "Vision-based Learning Systems for Semi-Automated Forklifts",
       image: "FedExIITB.png",
+      tag: "ai",
+      skills: ["Python", "YOLOv8", "YOLOv11", "Optuna", "OpenCV", "Computer Vision"],
       popupLines: [
         "Bachelor's Thesis Project",
         "Guide: Prof. Archak Mittal",
@@ -102,6 +116,8 @@ const DATA = {
       title: "Intelligent Roadway Perception for Autonomous Driving Systems",
       popupHeading: "Intelligent Roadway Perception for Autonomous Driving Systems",
       image: "AD.png",
+      tag: "ai",
+      skills: ["Python", "Point Transformer v2", "Gemini API", "Few-shot Prompting", "3D Segmentation"],
       popupLines: [
         "Research Intern",
         "Guide: Prof. Karim El-Basyouny",
@@ -109,11 +125,12 @@ const DATA = {
         "University of Alberta"
       ]
     },
-    /* YOU REQUESTED THESE EXACT IMAGE NAMES — placed under images/ with spaces preserved */
     research3: {
       title: "Spatiotemporal deep learning models for forecasting rapid intensifying cyclones",
       popupHeading: "Spatiotemporal deep learning models for forecasting rapidly intensifying cyclones",
       image: "Screenshot 2025-10-11 003517.png",
+      tag: "ai",
+      skills: ["Python", "LSTM", "Ensemble Models", "Data Augmentation", "PyTorch"],
       popupLines: [
         "Research Intern",
         "Guide: Prof. Rohitash Chandra",
@@ -125,6 +142,8 @@ const DATA = {
       title: "Delhi Air Quality Prediction",
       popupHeading: "Delhi Air Quality Prediction",
       image: "Screenshot 2025-10-11 004010.png",
+      tag: "ai",
+      skills: ["Python", "LSTM", "Time Series", "Deep Learning"],
       popupLines: [
         "Research Intern",
         "Guide: Prof. Rohitash Chandra",
@@ -133,9 +152,11 @@ const DATA = {
       ]
     },
     research5: {
-      title: "Speech Signal Analysis for Parkinson’s Disease detection",
-      popupHeading: "Speech Signal Analysis for Parkinson’s Disease detection",
+      title: "Speech Signal Analysis for Parkinson's Disease Detection",
+      popupHeading: "Speech Signal Analysis for Parkinson's Disease Detection",
       image: "PD.png",
+      tag: "ai",
+      skills: ["Python", "OpenSMILE", "CNN-LSTM", "ConvLSTM", "Signal Processing"],
       popupLines: [
         "Research and Development Project",
         "Guide: Prof. Nirmal Punjabi",
@@ -147,6 +168,8 @@ const DATA = {
       title: "Oral Potential Malignant Detection",
       popupHeading: "Oral Potential Malignant Detection",
       image: "Screenshot 2025-10-11 005059.png",
+      tag: "ai",
+      skills: ["Python", "Deep Learning", "Medical Imaging"],
       popupLines: [
         "Research and Development Project",
         "Guide: Prof. Nirmal Punjabi",
@@ -158,6 +181,8 @@ const DATA = {
       title: "Concrete Surface Image Analysis",
       popupHeading: "Concrete Surface Image Analysis",
       image: "Screenshot 2025-10-11 004832.png",
+      tag: "ai",
+      skills: ["Python", "ResNet-50", "U-Net", "DCGAN", "Image Segmentation"],
       popupLines: [
         "Research and Development Project",
         "Guides: Prof. Abir De, Prof. Alankar",
@@ -168,28 +193,60 @@ const DATA = {
   },
 
   projects: {
-    project1: {
-      title: "AI for Customer Review Classification",
-      popupHeading: "AI for Customer Review Classification",
-      image: "Screenshot 2025-11-08 001121.png",
+    project0: {
+      title: "Agentic AI Backend Data Platform — IQVIA",
+      popupHeading: "Agentic AI Backend Data Platform — IQVIA",
+      image: "Screenshot 2025-10-11 005117.png",
+      tag: "both",
+      skills: ["FastAPI", "Docker", "Python", "DuckDB", "PostgreSQL", "SQL", "LangChain", "Plotly", "REST APIs"],
       popupLines: [
-        "Course Project : CS 419 - Introduction to Machine Learning",
-        "Guide: Prof. Abir De"
+        "Full-stack backend data platform for autonomous pharma market analytics",
+        "FastAPI backend with Docker containerisation for large dataset processing",
+        "Agentic ReAct pipeline with intelligent SQL/Pandas query routing",
+        "End-to-end insight generation: data ingestion → Python/SQL codegen → Plotly visualisations"
+      ]
+    },
+    project1: {
+      title: "Open Source Contributions — Self-Driving Car Simulation",
+      popupHeading: "Open Source Contributions — Self-Driving Car Simulation",
+      image: "Technical Projects.jpg",
+      tag: "se",
+      skills: ["Java", "Bellman-Ford", "Git", "Code Reviews", "Pull Requests", "Open Source"],
+      popupLines: [
+        "Hello FOSS Program, Web and Coding Club, IIT Bombay — 2022",
+        "Contributed Java shortest-path algorithms (Bellman-Ford) for open-source autonomous vehicle simulation",
+        "Collaborated via Git workflows, code reviews, and PRs across 100+ contributor community",
+        "Ranked Top 3 of 200+ contributors by accepted contributions"
       ]
     },
     project2: {
+      title: "AI for Customer Review Classification",
+      popupHeading: "AI for Customer Review Classification",
+      image: "Screenshot 2025-11-08 001121.png",
+      tag: "ai",
+      skills: ["Python", "Scikit-learn", "NLP", "Classification"],
+      popupLines: [
+        "Course Project: CS 419 — Introduction to Machine Learning",
+        "Guide: Prof. Abir De"
+      ]
+    },
+    project3: {
       title: "Optimizing Stock Trading with Reinforcement Learning",
       popupHeading: "Optimizing Stock Trading with Reinforcement Learning",
       image: "Screenshot 2025-11-07 234304.png",
+      tag: "ai",
+      skills: ["Python", "Reinforcement Learning", "PyTorch"],
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
       ]
     },
-    project3: {
+    project4: {
       title: "AI-based Recommendation System",
       popupHeading: "AI-based Recommendation System",
       image: "Screenshot 2025-11-07 235644.png",
+      tag: "ai",
+      skills: ["Python", "Collaborative Filtering", "ML"],
       popupLines: [
         "Winter in Data Science",
         "Analytics Club, IIT Bombay"
@@ -199,34 +256,26 @@ const DATA = {
 
   positions: {
     position1: {
-      title: "Teaching Assistant - CS101",
-      popupHeading: "Teaching Assistant - CS101",
+      title: "Teaching Assistant — CS101: Computer Programming & Utilization",
+      popupHeading: "Teaching Assistant — CS101",
       image: "Screenshot 2025-10-11 150344.png",
+      tag: "se",
+      skills: ["C", "C++", "Teaching", "Lab Instruction"],
       popupLines: [
-        "Course Instructors - Prof. Mythili Vutukuru, Prof. Suyash Awate",
-        "Department of Computer Science and Engineering",
-        "IIT Bombay"
+        "Supervised by Prof. Mythili Vutukuru & Prof. Suyash Awate",
+        "Department of Computer Science and Engineering, IIT Bombay",
+        "Instructed 800+ freshmen on C and C++ programming",
+        "Part of a 70-member Teaching Assistant team"
       ]
     },
     position2: {
       title: "Coordinator, Abhyuday",
       popupHeading: "Coordinator, Abhyuday",
       image: "Abhyuday.png",
+      tag: "se",
+      skills: ["Leadership", "Social Impact", "Team Coordination"],
       popupLines: [
-        "IIT Bombay's student-led social impact body",
-      ]
-    }
-  },
-
-  experience: {
-    experience1: {
-      title: "IQVIA (India) Pvt. Ltd.",
-      popupHeading: "IQVIA (India) Pvt. Ltd.",
-      image: "Screenshot 2025-10-11 005117.png",
-      popupLines: [
-        "Analyst",
-        "Data, tech and AI",
-        "India Management Consulting Team"
+        "IIT Bombay's student-led social impact body"
       ]
     }
   },
@@ -235,7 +284,7 @@ const DATA = {
     publication1: { title: "Spatiotemporal deep learning models for detection of rapid intensification in cyclones", paper: "https://www.arxiv.org/abs/2506.08397", image: "Screenshot 2025-10-11 003517.png" },
     publication2: { title: "Learning-Based Vision Systems for Semi-Autonomous Forklift Operation in Industrial Warehouse Environments", paper: "https://arxiv.org/abs/2511.06295", image: "forklift.png" },
     publication3: { title: "Delhi air quality prediction using LSTM deep learning models with a focus on COVID-19 lockdown", paper: "https://drive.google.com/file/d/1waOmxNnizM6DvwOh8IZRA16-BvOxaE3L/view?usp=sharing", image: "Screenshot 2025-10-11 004010.png" },
-    publication4: { title: "Parkinson’s Disease Detection Using ComParE Features", paper: "https://drive.google.com/file/d/1NlpaMvES_DTwvW1Q-hW7irqP3HlNEgvz/view?usp=sharing", image: "PD.png" }
+    publication4: { title: "Parkinson's Disease Detection Using ComParE Features", paper: "https://drive.google.com/file/d/1NlpaMvES_DTwvW1Q-hW7irqP3HlNEgvz/view?usp=sharing", image: "PD.png" }
   },
 
   conferences: {
@@ -243,22 +292,48 @@ const DATA = {
     conference2: { title: "Intelligent Roadway Analysis: Automated Object Identification and Scene Description Retrieval for Highway Features", paper: "https://github.com/VamshikaSutar/University-of-Alberta-Research-Experience-Reports-and-Presentations/blob/40f34f91700fd7558a88d17adf0105220d2d051a/University_of_Alberta_International_Symposium_Poster.pdf", image: "Screenshot 2025-10-11 005253.png" }
   }
 };
+
+const TAG_LABELS = { se: "Software Engineering", ai: "AI / ML", both: "SE + AI" };
+const TAG_CLASSES = { se: "tag-se", ai: "tag-ai", both: "tag-both" };
 </script>
 
 <!-- HOME -->
 <div id="home" class="section active page">
-  <div style="text-align:center;margin-bottom:8px">
-    <h2 style="margin:0 0 6px 0"></h2>
-    <p class="meta">Exploring AI research grounded in real-world engineering challenges.</p>
+  <div style="text-align:center;margin-bottom:16px">
+    <p class="meta">Building backend systems and AI pipelines grounded in real-world engineering problems.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px">
+      <span style="background:#dbeafe;color:#1e40af;font-size:12px;padding:4px 12px;border-radius:12px;font-weight:600">Software Engineering</span>
+      <span style="background:#ede9fe;color:#5b21b6;font-size:12px;padding:4px 12px;border-radius:12px;font-weight:600">AI / ML Research</span>
+      <span style="background:#dcfce7;color:#166534;font-size:12px;padding:4px 12px;border-radius:12px;font-weight:600">Open Source</span>
+      <span style="background:#fef3c7;color:#92400e;font-size:12px;padding:4px 12px;border-radius:12px;font-weight:600">International Research</span>
+    </div>
   </div>
 
   <div class="container">
-    <div class="card" tabindex="0" onclick="showSection('publications')"><img src="Screenshot 2025-10-11 002030.png" alt=""><h3>Publications</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('conferences')"><img src="Conferences and Symposia.jpg" alt=""><h3>Conferences & Symposiums</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('researchList')"><img src="Screenshot 2025-10-11 002030.png" alt=""><h3>Research Experience</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('projects')"><img src="Technical Projects.jpg" alt=""><h3>Technical Projects</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('positions')"><img src="Screenshot 2025-10-11 150318.png" alt=""><h3>Position of Responsibility</h3></div>
-    <div class="card" tabindex="0" onclick="showSection('experience')"><img src="Screenshot 2025-10-11 005117.png" alt=""><h3>Professional Experience</h3></div>
+    <div class="card" tabindex="0" onclick="showSection('publications')">
+      <img src="Screenshot 2025-10-11 002030.png" alt="">
+      <h3>Publications</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('conferences')">
+      <img src="Conferences and Symposia.jpg" alt="">
+      <h3>Conferences &amp; Symposiums</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('researchList')">
+      <img src="Screenshot 2025-10-11 002030.png" alt="">
+      <h3>Research Experience</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('projects')">
+      <img src="Technical Projects.jpg" alt="">
+      <h3>Software Projects</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('positions')">
+      <img src="Screenshot 2025-10-11 150318.png" alt="">
+      <h3>Position of Responsibility</h3>
+    </div>
+    <div class="card" tabindex="0" onclick="showSection('experience')">
+      <img src="Screenshot 2025-10-11 005117.png" alt="">
+      <h3>Professional Experience</h3>
+    </div>
   </div>
 </div>
 
@@ -272,7 +347,7 @@ const DATA = {
 <!-- CONFERENCES -->
 <div id="conferences" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
-  <h2>Conferences & Symposiums</h2>
+  <h2>Conferences &amp; Symposiums</h2>
   <div class="container" id="conferences-container"></div>
 </div>
 
@@ -286,7 +361,13 @@ const DATA = {
 <!-- PROJECTS -->
 <div id="projects" class="section page">
   <a class="back-button" onclick="showSection('home')">← Home</a>
-  <h2>Technical Projects</h2>
+  <h2>Software Projects</h2>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('projects-container', 'all', this)">All</button>
+    <button class="filter-btn" onclick="filterCards('projects-container', 'se', this)">Software Engineering</button>
+    <button class="filter-btn" onclick="filterCards('projects-container', 'ai', this)">AI / ML</button>
+    <button class="filter-btn" onclick="filterCards('projects-container', 'both', this)">SE + AI</button>
+  </div>
   <div class="container" id="projects-container"></div>
 </div>
 
@@ -304,7 +385,7 @@ const DATA = {
   <div class="container" id="experience-container"></div>
 </div>
 
-<!-- Popup (read-only) -->
+<!-- Popup -->
 <div id="popupBackdrop" class="popup-backdrop" aria-hidden="true">
   <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupHeading">
     <div class="heading-big" id="popupHeading">Heading</div>
@@ -313,6 +394,7 @@ const DATA = {
       <div style="flex:1">
         <div class="muted" id="popupContext"></div>
         <ul id="popupLines" class="popup-lines"></ul>
+        <div id="popupSkills" class="skills-strip"></div>
         <div id="popupExtraLink" style="margin-top:8px"></div>
       </div>
     </div>
@@ -323,20 +405,16 @@ const DATA = {
 </div>
 
 <script>
-/* render functions */
 function renderPublications(){
   const c = document.getElementById('publications-container'); c.innerHTML='';
   Object.keys(DATA.publications || {}).forEach(k=>{
     const it = DATA.publications[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    const img = it.image ? escapeHtml(it.image) : 'images/publications.png';
+    const img = it.image ? escapeHtml(it.image) : '';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
-      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.publications.${k}.paper')">Paper</a>`}`;
-    card.addEventListener('click', ()=>{
-      if(paperUrl) window.open(paperUrl,'_blank','noopener');
-      else alert('No manuscript URL set. Edit DATA.publications.'+k+'.paper in the source.');
-    });
+      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Paper</a>` : `<a class="paper-link" href="#">Paper</a>`}`;
+    card.addEventListener('click', ()=>{ if(paperUrl) window.open(paperUrl,'_blank','noopener'); });
     c.appendChild(card);
   });
 }
@@ -347,25 +425,34 @@ function renderConferences(){
     const it = DATA.conferences[k];
     const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
     const paperUrl = it.paper && it.paper !== '#' ? it.paper : '';
-    const img = it.image ? escapeHtml(it.image) : 'images/conferences.png';
+    const img = it.image ? escapeHtml(it.image) : '';
     card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>
-      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Presentation</a>` : `<a class="paper-link" href="#" onclick="alert('No manuscript URL set. Edit DATA.conferences.${k}.paper')">Presentation</a>`}`;
-    card.addEventListener('click', ()=>{
-      if(paperUrl) window.open(paperUrl,'_blank','noopener');
-      else alert('No manuscript URL set. Edit DATA.conferences.'+k+'.paper in the source.');
-    });
+      ${paperUrl ? `<a class="paper-link" href="${escapeHtml(paperUrl)}" target="_blank" rel="noopener">Presentation</a>` : `<a class="paper-link" href="#">Presentation</a>`}`;
+    card.addEventListener('click', ()=>{ if(paperUrl) window.open(paperUrl,'_blank','noopener'); });
     c.appendChild(card);
   });
+}
+
+function makeCard(it, clickFn){
+  const card = document.createElement('div');
+  card.className='card';
+  card.tabIndex=0;
+  card.dataset.tag = it.tag || 'ai';
+  const img = it.image ? escapeHtml(it.image) : '';
+  const tagLabel = TAG_LABELS[it.tag] || '';
+  const tagClass = TAG_CLASSES[it.tag] || 'tag-ai';
+  card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}">
+    <h3>${escapeHtml(it.title)}</h3>
+    ${tagLabel ? `<span class="card-tag ${tagClass}">${escapeHtml(tagLabel)}</span>` : ''}`;
+  card.addEventListener('click', clickFn);
+  return card;
 }
 
 function renderResearch(){
   const c = document.getElementById('research-container'); c.innerHTML='';
   Object.keys(DATA.research || {}).forEach(k=>{
     const it = DATA.research[k];
-    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/research1.png';
-    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
-    card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Research', it.popupLines || [], null));
+    const card = makeCard(it, ()=>openPopup(it.popupHeading || it.title, 'Research Experience', it.popupLines || [], null, it.skills || []));
     c.appendChild(card);
   });
 }
@@ -374,10 +461,7 @@ function renderProjects(){
   const c = document.getElementById('projects-container'); c.innerHTML='';
   Object.keys(DATA.projects || {}).forEach(k=>{
     const it = DATA.projects[k];
-    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/project1.png';
-    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
-    card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Project', it.popupLines || [], it.detailLink || null));
+    const card = makeCard(it, ()=>openPopup(it.popupHeading || it.title, 'Project', it.popupLines || [], it.detailLink || null, it.skills || []));
     c.appendChild(card);
   });
 }
@@ -386,44 +470,76 @@ function renderPositions(){
   const c = document.getElementById('positions-container'); c.innerHTML='';
   Object.keys(DATA.positions || {}).forEach(k=>{
     const it = DATA.positions[k];
-    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/position1.png';
-    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
-    card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Position', it.popupLines || [], it.detailLink || null));
+    const card = makeCard(it, ()=>openPopup(it.popupHeading || it.title, 'Position of Responsibility', it.popupLines || [], it.detailLink || null, it.skills || []));
     c.appendChild(card);
   });
 }
 
 function renderExperience(){
   const c = document.getElementById('experience-container'); c.innerHTML='';
-  Object.keys(DATA.experience || {}).forEach(k=>{
-    const it = DATA.experience[k];
-    const card = document.createElement('div'); card.className='card'; card.tabIndex=0;
-    const img = it.image ? escapeHtml(it.image) : 'images/professional.png';
-    card.innerHTML = `<img src="${img}" alt="${escapeHtml(it.title)}"><h3>${escapeHtml(it.title)}</h3>`;
-    card.addEventListener('click', ()=>openPopup(it.popupHeading || it.title, 'Professional Experience', it.popupLines || [], it.detailLink || null));
+  const exp = {
+    experience1: {
+      title: "IQVIA (India) Pvt. Ltd.",
+      popupHeading: "Analyst — Agentic AI Software Application Development",
+      image: "Screenshot 2025-10-11 005117.png",
+      tag: "both",
+      skills: ["FastAPI", "Docker", "Python", "DuckDB", "PostgreSQL", "LangChain", "REST APIs", "Plotly", "Agile"],
+      popupLines: [
+        "Full-stack backend data platform for autonomous pharma market analytics",
+        "FastAPI backend with Docker containerisation for large dataset processing",
+        "Agentic ReAct pipeline (LangChain) with intelligent Pandas/DuckDB+SQL routing",
+        "Automated end-to-end insight generation pipeline with Plotly visualisations",
+        "Jul 2025 – Present"
+      ]
+    }
+  };
+  Object.keys(exp).forEach(k=>{
+    const it = exp[k];
+    const card = makeCard(it, ()=>openPopup(it.popupHeading || it.title, 'Professional Experience', it.popupLines || [], null, it.skills || []));
     c.appendChild(card);
   });
 }
 
-/* popup control */
+function filterCards(containerId, tag, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll(`#${containerId} .card`);
+  cards.forEach(card=>{
+    if(tag === 'all' || card.dataset.tag === tag){
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
 const popupBackdrop = document.getElementById('popupBackdrop');
-const popupHeading = document.getElementById('popupHeading');
+const popupHeadingEl = document.getElementById('popupHeading');
 const popupContext = document.getElementById('popupContext');
 const popupLines = document.getElementById('popupLines');
 const popupExtraLink = document.getElementById('popupExtraLink');
+const popupSkills = document.getElementById('popupSkills');
 
-function openPopup(bigHeading, contextLabel, linesArray, optionalLink){
-  popupHeading.textContent = bigHeading || '';
+function openPopup(bigHeading, contextLabel, linesArray, optionalLink, skills){
+  popupHeadingEl.textContent = bigHeading || '';
   popupContext.textContent = contextLabel || '';
   popupLines.innerHTML = '';
   if(!linesArray || !linesArray.length){
-    popupLines.innerHTML = '<li style="color:var(--muted)">No content provided. Edit DATA in the source to add popupLines.</li>';
+    popupLines.innerHTML = '<li style="color:var(--muted)">No details provided.</li>';
   } else {
     linesArray.forEach(line => {
       const li = document.createElement('li');
-      li.innerHTML = escapeHtml(line);
+      li.textContent = line;
       popupLines.appendChild(li);
+    });
+  }
+  popupSkills.innerHTML = '';
+  if(skills && skills.length){
+    skills.forEach(s=>{
+      const pill = document.createElement('span');
+      pill.className = 'skill-pill';
+      pill.textContent = s;
+      popupSkills.appendChild(pill);
     });
   }
   if(optionalLink){
@@ -438,11 +554,9 @@ function closePopup(){
   popupBackdrop.setAttribute('aria-hidden','true');
 }
 
-/* clicking outside or Esc closes popup */
 popupBackdrop.addEventListener('click', e => { if(e.target === popupBackdrop) closePopup(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape' && popupBackdrop.style.display === 'flex') closePopup(); });
 
-/* section switching */
 function showSection(id){
   document.querySelectorAll('.section').forEach(s=>{ s.style.display = 'none'; s.classList.remove('active'); });
   const el = document.getElementById(id);
@@ -450,7 +564,6 @@ function showSection(id){
   else { document.getElementById('home').style.display='block'; document.getElementById('home').classList.add('active'); }
 }
 
-/* init */
 (function init(){
   renderPublications();
   renderConferences();
@@ -458,7 +571,6 @@ function showSection(id){
   renderProjects();
   renderPositions();
   renderExperience();
-  // ensure sections hidden except home
   document.querySelectorAll('.section').forEach(s=>{ if(!s.classList.contains('active')) s.style.display='none'; });
 })();
 </script>
